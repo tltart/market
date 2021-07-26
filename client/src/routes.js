@@ -3,7 +3,7 @@ import Basket from './pages/Basket';
 import Auth from './pages/Auth';
 import Shop from './pages/Shop';
 import Product from './pages/Product';
-import {ADMIN_ROUTE, BASKET_ROUTE, LOGIIN_ROUTE, PRODUCT_ROUTE, SHOP_ROUTE} from './utils/consts';
+import {ADMIN_ROUTE, BASKET_ROUTE, LOGIIN_ROUTE, PRODUCT_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from './utils/consts';
 
 export const authRoutes = [
     {
@@ -28,5 +28,9 @@ export const publicRoutes = [
     {
         path: PRODUCT_ROUTE + '/:id',
         Component: Product
+    },
+    {
+        path: REGISTRATION_ROUTE,
+        Component: Auth
     }
 ];
