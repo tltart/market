@@ -16,7 +16,7 @@ const NavBar = observer(() => {
                     </ul>
                     :
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        <li><Link to={LOGIIN_ROUTE} onClick={() => user.setIsAuth(true)}>Войти</Link></li>
+                        <li><Link to={LOGIIN_ROUTE}>Выйти</Link></li>
                         <li><Link to={REGISTRATION_ROUTE}>Авторизация</Link></li>
                     </ul>
                 }

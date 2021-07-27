@@ -1,11 +1,15 @@
-import { React } from 'react';
+import { React, useContext } from 'react';
+import ListProduct from '../components/ListProduct';
+
+
 
 const Shop = () => {
-
+    
     return (
         <div>
-            <h1>Shop</h1>
-        </div>
+            <ListProduct />
+         </div>
+        
     );
 }
 
