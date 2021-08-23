@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
    },
  ];
  
-export default function BasicImageList() {
+export default function BasicImageList(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>

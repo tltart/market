@@ -9,7 +9,26 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SwipeMenu from '../components/SwipeMenu/SwipeMenu'
 import cc from '../App.module.css'
 
+import { connect } from 'react-redux'
+import { swipeMenuActive, swipeMenuDeactive } from '../store/swipeMenuReducer'
 
+
+let mapStateProps = (state) => {
+  return {
+    isActive: state.swipemenu.isActive
+  }
+}
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    menuActivate: () => {
+      dispatch(swipeMenuActive())
+    },
+    menuDeactivate: () => {
+      dispatch(swipeMenuDeactive())
+    }
+  }
+}
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -22,16 +41,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar({items}) {
+const ButtonAppBar = (props) => {
   const classes = useStyles();
 
-  const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(props.isActive);
 
-
-  const foo = () =>{
-    setMenu(!menu);
-    console.log(menu);
+  const foo = () => {
+    switch (menu) {
+      case true:
+        setMenu(false);
+        props.menuDeactivate();
+        document.getElementById('body').style.filter
+        return menu;
+      case false:
+        setMenu(true);
+        props.menuActivate();
+        return menu;
+      default:
+        break;
+    }
   }
+
+  console.log(menu)
 
   return (
     <div className={classes.root} onClick={() => { foo() }}>
@@ -46,8 +77,11 @@ export default function ButtonAppBar({items}) {
           <Button color="inherit" style={{ zIndex: "15" }}>Login</Button>
         </Toolbar>
       </AppBar>
-      <SwipeMenu items={items} active={menu}/>
+      <SwipeMenu items={props.items} active={menu} />
     </div>
   );
 }
+
+
+export default connect(mapStateProps, mapDispatchToProps)(ButtonAppBar);
 
