@@ -51,11 +51,12 @@ const ButtonAppBar = (props) => {
       case true:
         setMenu(false);
         props.menuDeactivate();
-        document.getElementById('body').style.filter
+        document.getElementById('root').classList.remove(cc.active)
         return menu;
       case false:
         setMenu(true);
         props.menuActivate();
+        document.getElementById('root').classList.add(cc.active)
         return menu;
       default:
         break;
