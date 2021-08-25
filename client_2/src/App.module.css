@@ -1,17 +1,3 @@
-.main {
-    /* z-index: 1; */
-}
-
 .active{
-    backdrop-filter: blur(2px);
+    filter:blur(5px);
 }
-
-/* .active {
-    z-index: -1;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: url(blur.svg#blur);
-} */

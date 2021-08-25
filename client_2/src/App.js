@@ -1,10 +1,8 @@
-import ButtonAppBar from './components/NavBar'
-import BasicImageList from './components/Menu'
-import Header from './components/Header/header_video'
 import c from './App.module.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../src/store/store'
+import AppRoutes from './components/AppRoutes'
 
 
 function App() {
@@ -12,11 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <div className={c.main}>
-          <ButtonAppBar items={items} />
-          <Header />
-          <BasicImageList />
-        </div>
+        <AppRoutes />
       </Provider>
     </BrowserRouter>
 
