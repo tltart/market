@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    margin-top: 5px;
+    width: 107px;
+    height: 107px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.main img {
+    min-width: 100%;
+    min-height: 100%;
+    flex-shrink: 0;
+}

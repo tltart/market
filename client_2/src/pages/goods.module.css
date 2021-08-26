@@ -1,0 +1,10 @@
+.main{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-evenly;
+    width: 100vw;
+    flex-wrap: wrap;
+}
+.main > div:last-of-type {
+
+}

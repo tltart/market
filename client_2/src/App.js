@@ -3,14 +3,18 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../src/store/store'
 import AppRoutes from './components/AppRoutes'
+import Header from 'components/Header/header'
 
 
 function App() {
-  const items = [{ value: "Главная", href: "/", id: 1 }, { value: "Кексы", href: "/keks", id: 2 }, { value: "Зефир", href: "/zefir", id: 3 }, { value: "Торты", href: "/tort", id: 4 }]
+  
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <AppRoutes />
+        <div>
+          <Header />
+          <AppRoutes />
+        </div>
       </Provider>
     </BrowserRouter>
 

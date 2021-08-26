@@ -1,10 +1,10 @@
 import {combineReducers, createStore} from 'redux';
-import swipeMenuReducer from './swipeMenuReducer'
+import goodsReducer from './goodsReducer'
 
 
 
 let reducers = combineReducers({
-    swipemenu: swipeMenuReducer,
+    goods: goodsReducer,
 
 });
 

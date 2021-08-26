@@ -24,7 +24,7 @@ export const publicRoutes = [
     },
     {
         path: MAIN_ROUTE,
-        Component: MAIN_PAGE
+        Component: GOODS_PAGE
     }
 
 ]
