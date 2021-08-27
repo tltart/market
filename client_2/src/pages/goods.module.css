@@ -1,3 +1,8 @@
+.super__main{
+    display: flex;
+    flex-direction: column;
+}
+
 .main{
     display: flex;
     margin-top: 10px;
@@ -7,4 +12,30 @@
 }
 .main > div:last-of-type {
 
+}
+
+.sel > h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sel{
+    align-self: center;
+    margin-top: 10px;
+    width: 80vw;
+}
+
+.menu{
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    bottom: 0;
+    width: 100vw;
+    height: 60px;
+}
+.menu img{
+    margin-top: 5px;
+    width: 70px;
+    height: 40px;
 }

@@ -3,7 +3,12 @@ import { connect } from 'react-redux'
 import Good from '../components/Good/good'
 import c from './goods.module.css'
 import { useState } from 'react'
-import SelectMenu from 'components/SelectMenu/selectMenu'
+import SelectMenu from '../components/SelectMenu/selectMenu'
+import plus from '../assets/icons/plus.svg'
+import comment from '../assets/icons/comment.svg'
+import home from '../assets/icons/home.svg'
+import search from '../assets/icons/search.svg'
+import user from '../assets/icons/user.svg'
 
 
 
@@ -13,15 +18,47 @@ let mapStateToProps = (state) => {
     }
 }
 
+
 const GoodsPage = ({ goods }) => {
 
+    let [state, setState] = useState()
+
+    const opt = goods.goods.map(e => ({ value: e.name, label: e.name }))
+
+
+    const handleChange = () => setState(state);
+
     return (
-        <>
-            <SelectMenu goods={goods.goods} />
+        <div className={c.super__main}>
+            <div className={c.sel}>
+                <h2>Выбрать категорию</h2>
+                <SelectMenu value={state} onChange={handleChange} options={opt} placeholder={"Выбрать продукт"} />
+            </div>
+            <div>
+                <h5>Есть в наличии</h5>
+            </div>
             <div className={c.main}>
                 {goods.goods.map(good => <Good key={good.id} good={good} />)}
             </div>
-        </>
+            <div>
+                <h5>Заказать</h5>
+            </div>
+            <div className={c.main}>
+                {goods.goods.map(good => <Good key={good.id} good={good} />)}
+            </div>
+
+            <div className={c.menu__wrap}>
+                <hr />
+                <div className={c.menu}>
+                    <img src={home} alt="home" />
+                    <img src={search} alt="search" />
+                    <img src={plus} alt="plus" />
+                    <img src={comment} alt="comment" />
+                    <img src={user} alt="user" />
+
+                </div>
+            </div>
+        </div>
     )
 }
 
