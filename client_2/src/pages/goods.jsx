@@ -9,6 +9,7 @@ import comment from '../assets/icons/comment.svg'
 import home from '../assets/icons/home.svg'
 import search from '../assets/icons/search.svg'
 import user from '../assets/icons/user.svg'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -50,9 +51,15 @@ const GoodsPage = ({ goods }) => {
             <div className={c.menu__wrap}>
                 <hr />
                 <div className={c.menu}>
-                    <img src={home} alt="home" />
-                    <img src={search} alt="search" />
-                    <img src={plus} alt="plus" />
+                    <NavLink to='/' >
+                        <img src={home} alt="home" />
+                    </NavLink>
+                    <NavLink to='/search'>
+                        <img src={search} alt="search" />
+                    </NavLink>
+                    <NavLink to='/basket'>
+                        <img src={plus} alt="plus" />
+                    </NavLink>
                     <img src={comment} alt="comment" />
                     <img src={user} alt="user" />
 
