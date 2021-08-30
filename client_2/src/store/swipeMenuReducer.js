@@ -1,10 +1,10 @@
 const ACTIVE = "ACTIVE";
 const DEACTIVE = "DEACTIVE";
 
-let initialState = { isActive: false, balalaika: 'agon'};
+let initialState = { isActive: false, balalaika: 'agon' };
 
-const swipeMenuReducer = (state = initialState, action) =>{
-    let stateCopy = {... state};
+const swipeMenuReducer = (state = initialState, action) => {
+    let stateCopy = { ...state };
     switch (action.type) {
 
         case ACTIVE:
@@ -13,7 +13,7 @@ const swipeMenuReducer = (state = initialState, action) =>{
             return stateCopy;
         case DEACTIVE:
             console.log("REDUCER DEACTIVATE MENU")
-            stateCopy = {... state}
+            stateCopy = { ...state }
             stateCopy.isActive = false
             return stateCopy;
         default:
@@ -22,7 +22,7 @@ const swipeMenuReducer = (state = initialState, action) =>{
 
 }
 
-export const swipeMenuActive = () =>({type: ACTIVE})
-export const swipeMenuDeactive = () =>({type: DEACTIVE})
+export const swipeMenuActive = () => ({ type: ACTIVE })
+export const swipeMenuDeactive = () => ({ type: DEACTIVE })
 
 export default swipeMenuReducer;

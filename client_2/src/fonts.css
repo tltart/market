@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Comfortaa-Bold';
+    src: url('./assets/fonts/Comfortaa-Bold.ttf')
+}
+@font-face {
+    font-family: 'Comfortaa-Light';
+    src: url('./assets/fonts/Comfortaa-Light.ttf')
+}
+@font-face {
+    font-family: 'Comfortaa-Medium';
+    src: url('./assets/fonts/Comfortaa-Medium.ttf')
+}
+@font-face {
+    font-family: 'Comfortaa-Regular';
+    src: url('./assets/fonts/Comfortaa-Regular.ttf')
+}
+@font-face {
+    font-family: 'Comfortaa-SemiBold';
+    src: url('./assets/fonts/Comfortaa-SemiBold.ttf')
+}

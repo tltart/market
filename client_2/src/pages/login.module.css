@@ -1,0 +1,15 @@
+.login h1:first-child {
+    margin-left: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px
+
+}
+
+.is__login{
+    border: 2px solid red;
+    margin-top: 25px;
+    width: 90vw;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
