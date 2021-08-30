@@ -3,10 +3,14 @@ import React from 'react'
 
 
 const LoginPage = () => {
-    
+
+    const formHandle = (data) => {
+        console.log(data)
+    }
+
     return (
         <div>
-            <RegisterForm />
+            <RegisterForm onSubmit={formHandle} />
             <h1>Login Page</h1>
         </div>
     )
