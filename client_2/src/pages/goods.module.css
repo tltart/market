@@ -1,6 +1,7 @@
 .super__main{
     display: flex;
     flex-direction: column;
+    margin-bottom: 70px;
 }
 
 .main{
@@ -9,6 +10,7 @@
     justify-content: space-evenly;
     width: 100vw;
     flex-wrap: wrap;
+
 }
 .main > div:last-of-type {
 
@@ -26,6 +28,7 @@
 }
 
 .menu{
+    border: 1px solid lightgray;
     position: fixed;
     display: flex;
     justify-content: space-around;

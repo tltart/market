@@ -10,6 +10,7 @@ import home from '../assets/icons/home.svg'
 import search from '../assets/icons/search.svg'
 import user from '../assets/icons/user.svg'
 import { NavLink } from 'react-router-dom'
+import { MAIN_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, GOODS_ROUTE } from '../utils/consts'
 
 
 
@@ -49,7 +50,6 @@ const GoodsPage = ({ goods }) => {
             </div>
 
             <div className={c.menu__wrap}>
-                <hr />
                 <div className={c.menu}>
                     <NavLink to='/' >
                         <img src={home} alt="home" />
@@ -57,11 +57,14 @@ const GoodsPage = ({ goods }) => {
                     <NavLink to='/search'>
                         <img src={search} alt="search" />
                     </NavLink>
-                    <NavLink to='/basket'>
+                    <NavLink to={GOODS_ROUTE}>
                         <img src={plus} alt="plus" />
                     </NavLink>
+
                     <img src={comment} alt="comment" />
-                    <img src={user} alt="user" />
+                    <NavLink to={LOGIN_ROUTE}>
+                        <img src={user} alt="user" />
+                    </NavLink>
 
                 </div>
             </div>
