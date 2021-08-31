@@ -5,16 +5,15 @@ import c from './registerForm.module.css'
 import {required} from '../common/Validate/validate'
 
 let RegisterForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, title, isLogin } = props
   return (
     <div className={c.forma__wrapper}>
       <form onSubmit={handleSubmit}>
-
+        <h1>{title}</h1>
         <Field name='email' type='email' component={InputForm} placeholder="Введите почту" validate={[required]}/>
         <Field name='password' type='password' component={InputForm} placeholder="Введите пароль" validate={[required]}/>
-
+        {!isLogin && <Field name='password' type='password' component={InputForm} placeholder="Повторите пароль" validate={[required]}/>}
         <button>Регистрация</button>
-
       </form>
     </div>
   )

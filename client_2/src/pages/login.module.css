@@ -1,15 +1,26 @@
-.login h1:first-child {
-    margin-left: 18px;
-    margin-top: 20px;
-    margin-bottom: 20px
 
+.login{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .is__login{
-    border: 2px solid red;
+    /* border: 2px solid green; */
     margin-top: 25px;
     width: 90vw;
     display: flex;
     align-items: baseline;
     justify-content: flex-end;
 }
+
+.is__login a h2{
+    margin-left: 20px;
+}
+
+input {
+    padding: 0 15px;
+}
+
+

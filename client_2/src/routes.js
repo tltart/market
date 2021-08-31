@@ -3,7 +3,7 @@ import GOODS_PAGE from './pages/goods'
 import BASKET_PAGE from './pages/basket'
 import MAIN_PAGE from './pages/shop'
 
-import {MAIN_ROUTE, LOGIN_ROUTE, GOODS_ROUTE, BASKET_ROUTE} from './utils/consts';
+import {MAIN_ROUTE, LOGIN_ROUTE, GOODS_ROUTE, BASKET_ROUTE, REGISTRATION_ROUTE} from './utils/consts';
 
 
 export const authRoutes = [
@@ -16,6 +16,10 @@ export const authRoutes = [
 export const publicRoutes = [
     {
         path: LOGIN_ROUTE,
+        Component: LOGIN_PAGE
+    },
+    {
+        path: REGISTRATION_ROUTE,
         Component: LOGIN_PAGE
     },
     {
