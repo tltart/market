@@ -10,7 +10,8 @@ import home from '../assets/icons/home.svg'
 import search from '../assets/icons/search.svg'
 import user from '../assets/icons/user.svg'
 import { NavLink } from 'react-router-dom'
-import { MAIN_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, GOODS_ROUTE } from '../utils/consts'
+import { SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE } from '../utils/consts'
+import {GoodActive} from '../store/goodsReducer'
 
 
 
@@ -21,12 +22,15 @@ let mapStateToProps = (state) => {
 }
 
 
-const GoodsPage = ({ goods }) => {
+const GoodsPage = ({ goods, GoodActive }) => {
 
     let [state, setState] = useState()
 
     const opt = goods.goods.map(e => ({ value: e.name, label: e.name }))
 
+    const click = () => {
+        GoodActive("Active");
+    }
 
     const handleChange = () => setState(state);
 
@@ -40,7 +44,7 @@ const GoodsPage = ({ goods }) => {
                 <h5>Есть в наличии</h5>
             </div>
             <div className={c.main}>
-                {goods.goods.map(good => <Good key={good.id} good={good} />)}
+                {goods.goods.map(good => <Good key={good.id} good={good} click={click}/>)}
             </div>
             <div>
                 <h5>Заказать</h5>
@@ -57,7 +61,7 @@ const GoodsPage = ({ goods }) => {
                     <NavLink to='/search'>
                         <img src={search} alt="search" />
                     </NavLink>
-                    <NavLink to={GOODS_ROUTE}>
+                    <NavLink to={SHOP_ROUTE}>
                         <img src={plus} alt="plus" />
                     </NavLink>
 
@@ -73,4 +77,4 @@ const GoodsPage = ({ goods }) => {
 }
 
 
-export default connect(mapStateToProps)(GoodsPage);
+export default connect(mapStateToProps, {GoodActive})(GoodsPage);

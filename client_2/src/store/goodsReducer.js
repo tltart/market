@@ -1,3 +1,5 @@
+const ACTIVE = "ACTIVE"
+
 
 let initialState = {
 
@@ -14,22 +16,25 @@ let initialState = {
         {id: 10, name: 'tort', descpription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', price: 150, weigth: 88, img: 'images/tort.jpg'}
     ],
     pageSize: 5,
-    countPage: 1
+    countPage: 1,
+    activeGood: false,
 
 }
 
 const goodsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case "value":
-
-            break;
+        case ACTIVE:
+            console.log("State GOOD active");
+            let newState = {...state}
+            newState.activeGood = action.payload;
+            return newState
 
         default:
             return state;
     }
 }
 
-
+export const GoodActive = (item) => ({type: ACTIVE, payload: item})
 
 export default goodsReducer;

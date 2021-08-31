@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router'
 import { authRoutes, publicRoutes } from '../routes'
-import {MAIN_ROUTE} from '../utils/consts'
+import {SHOP_ROUTE} from '../utils/consts'
 
 
 
@@ -12,7 +12,7 @@ const AppRoutes = () => {
             {publicRoutes.map(({ path, Component }) => 
                 <Route key={path} path={path} component={Component} exact />
             )}
-            <Redirect to={MAIN_ROUTE} />
+            <Redirect to={SHOP_ROUTE} />
         </Switch>
     )
 }
