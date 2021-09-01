@@ -1,6 +1,8 @@
 import React from 'react';
 import c from './goodCard.module.css';
 import SelectMenu from 'components/SelectMenu/selectMenu';
+import Calendar from 'react-calendar';
+import { useState } from 'react'
 
 const GoodCard = ({ good, onChange, value }) => {
 
@@ -9,6 +11,8 @@ const GoodCard = ({ good, onChange, value }) => {
     if (good) {
         opt = good.taste.map(e => ({ value: e, label: e }));
     }
+
+    const [valuee, setValuee] = useState(new Date());
 
     return (
         <div className={!good ? `${c.card__wrap}` : `${c.card__wrap} ${c.active}`} >
@@ -25,6 +29,10 @@ const GoodCard = ({ good, onChange, value }) => {
                                 <p>{good.description}</p>
                                 <p>Вес: {good.weight}</p>
                                 <h2>Цена: {good.price}</h2>
+                                <div className={c.calendar}>
+                                    <Calendar onChange={setValuee}
+                                        value={valuee} />
+                                </div>
                                 <div className={c.select__wrap}>
                                     <SelectMenu value={value} onChange={onChange} options={opt} placeholder={"Выбрать вкус"} />
                                 </div>
