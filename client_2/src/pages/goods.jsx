@@ -12,46 +12,54 @@ import user from '../assets/icons/user.svg'
 import { NavLink } from 'react-router-dom'
 import { SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE } from '../utils/consts'
 import {GoodActive} from '../store/goodsReducer'
+import GoodCard from '../components/Modal/GoodCard/goodCard'
 
 
 
 let mapStateToProps = (state) => {
     return {
-        goods: state.goods
+        goods: state.goods.goods,
+        activeGood: state.goods.activeGood
     }
 }
 
+const GoodsPage = ({ goods, activeGood, GoodActive }) => {
 
-const GoodsPage = ({ goods, GoodActive }) => {
+    let [product, setProduct] = useState()
+    let [taste, setTaste] = useState()
 
-    let [state, setState] = useState()
+    const opt = goods.map(e => ({ value: e.name, label: e.name }))
 
-    const opt = goods.goods.map(e => ({ value: e.name, label: e.name }))
-
-    const click = () => {
-        GoodActive("Active");
+    const click = (e) => {
+        e.stopPropagation();
+        GoodActive(e.target.id);
     }
 
-    const handleChange = () => setState(state);
+    const targetGood = goods.filter(good => good.id == activeGood)[0]
+
+    const handleChangeProduct = () => setProduct(product);
+    const handleChangeTaste = () => setTaste(taste);
 
     return (
-        <div className={c.super__main}>
+        <div className={c.super__main} onClick={()=>GoodActive(null)}>
             <div className={c.sel}>
                 <h2>Выбрать категорию</h2>
-                <SelectMenu value={state} onChange={handleChange} options={opt} placeholder={"Выбрать продукт"} />
+                <SelectMenu value={product} onChange={handleChangeProduct} options={opt} placeholder={"Выбрать продукт"} />
             </div>
             <div>
                 <h5>Есть в наличии</h5>
             </div>
             <div className={c.main}>
-                {goods.goods.map(good => <Good key={good.id} good={good} click={click}/>)}
+                {goods.map(good => <Good key={good.id} good={good} click={click} id={good.id}/>)}
             </div>
             <div>
                 <h5>Заказать</h5>
             </div>
             <div className={c.main}>
-                {goods.goods.map(good => <Good key={good.id} good={good} />)}
+                {goods.map(good => <Good key={good.id} good={good} id={good.id}/>)}
             </div>
+
+            <GoodCard good={targetGood} value={taste} onChange={handleChangeTaste} />
 
             <div className={c.menu__wrap}>
                 <div className={c.menu}>

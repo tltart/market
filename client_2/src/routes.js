@@ -1,7 +1,7 @@
 import LOGIN_PAGE from './pages/login'
 import GOODS_PAGE from './pages/goods'
 import BASKET_PAGE from './pages/basket'
-import GOOD_CARD from 'components/GoodCard/goodCard';
+import GOOD_CARD from 'components/Modal/GoodCard/goodCard';
 import {SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, REGISTRATION_ROUTE, GOOD_ROUTE} from './utils/consts';
 
 
