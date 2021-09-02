@@ -28,7 +28,7 @@ input:focus{
 }
 
 
-button{
+.button{
     margin-top: 20px;
     height: 30px;
     border-radius: 5px;

@@ -1,10 +1,49 @@
 import React from 'react';
 import c from './goodCard.module.css';
-import SelectMenu from 'components/SelectMenu/selectMenu';
-import Calendar from 'react-calendar';
-import { useState } from 'react'
+import Select from 'react-select';
+import Calendar, { registerLocale } from 'react-datepicker';
+import ru from "date-fns/locale/ru";
 
+import 'react-datepicker/dist/react-datepicker.css'
+import { useState } from 'react'
+registerLocale("ru", ru);
 const GoodCard = ({ good, onChange, value }) => {
+
+    const customStyles = {
+        control: (provided, state) => ({
+          ...provided,
+          background: '#fff',
+          borderColor: '#9e9e9e',
+          minHeight: '20px',
+          height: '20px',
+          boxShadow: state.isFocused ? null : null,
+        }),
+
+        placeholder: (provided, state) => ({
+            ...provided,
+            top: ''
+        }),
+
+        valueContainer: (provided, state) => ({
+          ...provided,
+          height: '30px',
+          padding: '0 6px'
+        }),
+    
+        input: (provided, state) => ({
+          ...provided,
+          margin: '0px',
+        }),
+        indicatorSeparator: (provided, state) => ({
+          ...provided,
+          height: '18px',
+          margin: '0'
+        }),
+        indicatorsContainer: (provided, state) => ({
+          ...provided,
+          height: '20px',
+        }),
+      };
 
     let opt = [];
 
@@ -12,8 +51,11 @@ const GoodCard = ({ good, onChange, value }) => {
         opt = good.taste.map(e => ({ value: e, label: e }));
     }
 
-    const [valuee, setValuee] = useState(new Date());
-
+    const [data, setData] = useState(null);
+    const isWeekday = (data) => {
+        const day = setData(data);
+        return day !== 0 && day !== 6;
+    };
     return (
         <div className={!good ? `${c.card__wrap}` : `${c.card__wrap} ${c.active}`} >
 
@@ -29,14 +71,29 @@ const GoodCard = ({ good, onChange, value }) => {
                                 <p>{good.description}</p>
                                 <p>Вес: {good.weight}</p>
                                 <h2>Цена: {good.price}</h2>
-                                <div className={c.calendar}>
-                                    <Calendar onChange={setValuee}
-                                        value={valuee} />
-                                </div>
                                 <div className={c.select__wrap}>
-                                    <SelectMenu value={value} onChange={onChange} options={opt} placeholder={"Выбрать вкус"} />
+                                <Select value={value} onChange={onChange} 
+                                options={opt} placeholder="Выбрать вкус"
+                                styles={customStyles}
+                                        menuPortalTarget={document.body}
+                                        menuPosition={'fixed'}
+                                        
+                                        />
                                 </div>
-                                <button>В корзину</button>
+                                <div className={c.calendar}>
+                                    <Calendar
+                                        locale="ru"
+                                        filterDate={d => {
+                                            return new Date() < d;
+                                        }}
+                                        placeholderText="Выбрать дату"
+                                        selected={data}
+                                        onChange={(e) => setData(e)}
+                                        dateFormat="dd/MM/yyyy"
+                                    />
+
+                                    <button className={c.card__button}>В корзину</button>
+                                </div>
                             </div>
                         </div>
                     }

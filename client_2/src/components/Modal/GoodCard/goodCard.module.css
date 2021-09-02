@@ -1,4 +1,4 @@
-.card__wrap{
+.card__wrap {
     position: fixed;
     overflow: auto;
     left: 0;
@@ -8,37 +8,36 @@
     visibility: hidden;
 }
 
-.card__wrap.active{
+.card__wrap.active {
     visibility: visible;
     backdrop-filter: blur(5px);
 }
 
-.card{
+.card {
     position: absolute;
     left: 50%;
     top: 50%;
     display: flex;
     transform: translate(-50%, -50%);
-
 }
 
-.modal{
+.modal {
     display: flex;
     flex-direction: column;
-    width:70vw;
+    width: 70vw;
     height: 70vh;
     max-width: 350px;
     border-radius: 20px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     overflow: hidden;
-
 }
 
-.modal img{
+.modal img {
     height: 50%;
     border-radius: 20px;
 }
-.content__wrap{
+
+.content__wrap {
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -46,18 +45,42 @@
     align-items: center;
     margin: 10px 20px 15px;
 }
-.content__wrap h2:nth-last-child(2){
+
+.content__wrap h2:nth-last-child(2) {
     align-self: flex-end;
-    
 }
-.content__wrap p{
+
+.content__wrap p {
     align-self: flex-end;
     margin-left: 10px;
 }
-.select__wrap{
+
+.select__wrap {
     width: 150px;
-    height: 30px;
 }
-.calendar{
-    
+
+
+.calendar {
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.calendar input {
+    border: 2px solid green;
+    width: 50%;
+    height: 15px;
+}
+
+button.card__button{
+    background-color: #34C759;
+    border: none;
+    color: white;
+    width: 50%;
+    word-wrap: break-word;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    align-self: flex-end;
 }
