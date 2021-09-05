@@ -1,8 +1,10 @@
-import RegisterForm from 'components/RegisterForm/registerForm'
+import RegisterForm from '../components/RegisterForm/registerForm'
 import React from 'react'
 import c from './login.module.css'
 import { NavLink, useLocation } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts'
+import CustomSelect from 'components/SelectMenu/customSelect/customSelect';
+import SelectForm from 'components/common/selectForm/selectForm';
 
 
 const LoginPage = () => {
@@ -29,8 +31,8 @@ const LoginPage = () => {
                     <p>Уже зарегистрированы?</p><NavLink to={LOGIN_ROUTE}><h2>Войти</h2></NavLink>
                 </div>
             }
+
         </div>
-        // </div>
     )
 }
 

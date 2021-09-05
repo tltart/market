@@ -33,7 +33,9 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
     const click = (e) => {
         e.stopPropagation();
         GoodActive(e.target.id);
+        document.body.style.overflow = 'hidden';
     }
+
 
     const targetGood = goods.filter(good => good.id == activeGood)[0]
 
@@ -41,7 +43,7 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
     const handleChangeTaste = () => setTaste(taste);
 
     return (
-        <div className={c.super__main} onClick={()=>GoodActive(null)}>
+        <div className={c.super__main} onClick={()=>{GoodActive(null); document.body.style.overflow = '';}}>
             <div className={c.sel}>
                 <h2>Выбрать категорию</h2>
                 <SelectMenu value={product} onChange={handleChangeProduct} options={opt} placeholder={"Выбрать продукт"} />
