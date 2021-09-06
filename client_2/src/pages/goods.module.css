@@ -27,19 +27,3 @@
     width: 80vw;
 }
 
-.menu{
-    border: 1px solid lightgray;
-    position: fixed;
-    display: flex;
-    justify-content: space-around;
-    background-color: #fff;
-    bottom: 0;
-    width: 100vw;
-    height: 60px;
-}
-.menu img{
-    cursor: pointer;
-    margin-top: 5px;
-    width: 70px;
-    height: 40px;
-}
