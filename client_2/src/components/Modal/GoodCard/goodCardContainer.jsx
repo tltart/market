@@ -5,33 +5,19 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 
 
-let mapStateToProps = (state) => {
-    return {
 
-    }
-}
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-}
-
-
-
-const GoodCardContainer = ({ good, click }) => {
+const GoodCardContainer = ({ good, click, taste, setTaste }) => {
 
     let [calendarDate, setCalendarDate] = useState(null);
-    let [selectValue, setSelectValue] = useState('default');
 
     const selectHandle = (e) => {
-        setSelectValue(e.target.value);
+        setTaste(e.target.value);
     }
 
     const formHandle = (e) => {
         e.preventDefault();
         console.log(moment(calendarDate).format("DD-MM-YYYY"));
-        console.log(selectValue);
+        console.log(taste);
         click(e);
     }
 
@@ -39,11 +25,11 @@ const GoodCardContainer = ({ good, click }) => {
         <GoodCard selectHandle={selectHandle}
             calendarDate={calendarDate} good={good}
             setCalendarDate={setCalendarDate}
-            selectValue={selectValue} formHandle={formHandle}
+            selectValue={taste} formHandle={formHandle}
         />
     )
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoodCardContainer)
+export default GoodCardContainer

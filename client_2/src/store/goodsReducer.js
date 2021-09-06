@@ -1,5 +1,5 @@
 const ACTIVE = "ACTIVE"
-
+const ADD_GOOD_BASKET = "ADD_GOOD_BASKET"
 
 let initialState = {
 
@@ -18,6 +18,7 @@ let initialState = {
     pageSize: 5,
     countPage: 1,
     activeGood: null,
+    offers : []
 
 }
 
@@ -25,13 +26,17 @@ const goodsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ACTIVE:
-            let newState = {...state, activeGood:action.payload}
-            return newState
+            return {...state, activeGood:action.payload}
+        case ADD_GOOD_BASKET:
+            console.log("ADD_GOOD_REDUCER");
+            console.log(state.offers);
+            return {...state, offers: [...state.offers, action.payload]}
         default:
             return state;
     }
 }
 
 export const GoodActive = (item) => ({type: ACTIVE, payload: item})
+export const AddGoodBasket = (good) => ({type: ADD_GOOD_BASKET, payload: good})
 
 export default goodsReducer;

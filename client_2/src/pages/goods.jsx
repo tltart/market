@@ -4,22 +4,24 @@ import Good from '../components/Good/good'
 import c from './goods.module.css'
 import { useState } from 'react'
 import SelectMenu from '../components/SelectMenu/selectMenu'
-import { GoodActive } from '../store/goodsReducer'
+import { GoodActive, AddGoodBasket } from '../store/goodsReducer'
 import GoodCardContainer from '../components/Modal/GoodCard/goodCardContainer'
-import Footer from '../components/common/Footer/footer';
+import Footer from '../components/common/Footer/footer'
 
 
 let mapStateToProps = (state) => {
     return {
         goods: state.goods.goods,
-        activeGood: state.goods.activeGood
+        activeGood: state.goods.activeGood,
+        offers: state.goods.offers,
     }
 }
 
 const GoodsPage = ({ goods, activeGood, GoodActive }) => {
 
     let [product, setProduct] = useState();
-    let [taste, setTaste] = useState();
+    let [taste, setTaste] = useState('default');
+    let [selectValue, setSelectValue] = useState('default');
 
     const opt = goods.map(e => ({ value: e.name, label: e.name }));
 
@@ -31,6 +33,8 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
             return;
         }
         else {
+            console.log(targetGood.name, taste)
+            AddGoodBasket({id:targetGood.name, taste:taste});
             GoodActive(null)
             return;
         }
@@ -61,7 +65,7 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
                 {goods.map(good => <Good key={good.id} good={good} id={good.id} />)}
             </div>
 
-            <GoodCardContainer good={targetGood} click={click} />
+            <GoodCardContainer good={targetGood} click={click} taste={taste} setTaste={setTaste} />
 
             <div className={c.menu__wrap}>
                 <Footer />
@@ -71,4 +75,4 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
 }
 
 
-export default connect(mapStateToProps, { GoodActive })(GoodsPage);
+export default connect(mapStateToProps, { GoodActive, AddGoodBasket })(GoodsPage);
