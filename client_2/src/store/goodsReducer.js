@@ -23,13 +23,11 @@ let initialState = {
 }
 
 const goodsReducer = (state = initialState, action) => {
-
     switch (action.type) {
+        
         case ACTIVE:
             return {...state, activeGood:action.payload}
         case ADD_GOOD_BASKET:
-            console.log("ADD_GOOD_REDUCER");
-            console.log(state.offers);
             return {...state, offers: [...state.offers, action.payload]}
         default:
             return state;

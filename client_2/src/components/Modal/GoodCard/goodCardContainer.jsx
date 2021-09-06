@@ -12,12 +12,12 @@ const GoodCardContainer = ({ good, click, taste, setTaste }) => {
 
     const selectHandle = (e) => {
         setTaste(e.target.value);
+        
     }
 
     const formHandle = (e) => {
         e.preventDefault();
         console.log(moment(calendarDate).format("DD-MM-YYYY"));
-        console.log(taste);
         click(e);
     }
 

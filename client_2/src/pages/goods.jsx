@@ -17,7 +17,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-const GoodsPage = ({ goods, activeGood, GoodActive }) => {
+const GoodsPage = ({ goods, activeGood, GoodActive, AddGoodBasket, offers }) => {
 
     let [product, setProduct] = useState();
     let [taste, setTaste] = useState('default');
@@ -33,9 +33,9 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
             return;
         }
         else {
-            console.log(targetGood.name, taste)
-            AddGoodBasket({id:targetGood.name, taste:taste});
+            AddGoodBasket({ id: targetGood.name, taste: taste });
             GoodActive(null)
+            console.log(offers);
             return;
         }
     }
