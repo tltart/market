@@ -1,5 +1,7 @@
+import CounterContainer from '../Counter/counterContainer';
 import React from 'react';
 import c from './basketItem.module.css'
+
 
 
 const BasketItem = ({ offer }) => {
@@ -13,9 +15,7 @@ const BasketItem = ({ offer }) => {
             <div className={c.data__wrapper}>
                 <h2>{offer.name}</h2>
                 <div className={c.taste}>{offer.taste}</div>
-                <div className={c.counter}>
-                    <input className={c.counter__window}></input>
-                </div>
+                <CounterContainer />
             </div>
         </div>
     )
