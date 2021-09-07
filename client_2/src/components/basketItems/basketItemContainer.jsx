@@ -14,7 +14,7 @@ const BasketItemContainer = ({offers}) => {
 
     return(
         <div>
-            {offers && offers.map(offer=> <BasketItem />)}
+            {offers && offers.map(offer=> <BasketItem key={offer.id} offer={offer} />)}
         </div>
     )
 

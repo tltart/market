@@ -32,6 +32,10 @@ export const publicRoutes = [
     {
         path: GOOD_ROUTE + '/:id',
         Component: GOOD_CARD
+    },
+    {
+        path: BASKET_ROUTE,
+        Component: BASKET_PAGE
     }
 
 
