@@ -1,27 +1,26 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Good from '../components/Good/good'
-import c from './goods.module.css'
-import { useState } from 'react'
-import SelectMenu from '../components/SelectMenu/selectMenu'
-import { GoodActive, AddGoodBasket } from '../store/goodsReducer'
-import GoodCardContainer from '../components/Modal/GoodCard/goodCardContainer'
-import Footer from '../components/common/Footer/footer'
+import React from 'react';
+import { connect } from 'react-redux';
+import Good from '../components/Good/good';
+import c from './goods.module.css';
+import { useState } from 'react';
+import SelectMenu from '../components/SelectMenu/selectMenu';
+import { GoodActive } from '../store/goodsReducer';
+import GoodCardContainer from '../components/Modal/GoodCard/goodCardContainer';
+import Footer from '../components/common/Footer/footer';
 
 
 let mapStateToProps = (state) => {
     return {
         goods: state.goods.goods,
-        activeGood: state.goods.activeGood,
-        offers: state.goods.offers,
+        activeGood: state.goods.activeGood
     }
 }
 
-const GoodsPage = ({ goods, activeGood, GoodActive, AddGoodBasket, offers }) => {
+const GoodsPage = ({ goods, activeGood, GoodActive }) => {
 
     let [product, setProduct] = useState();
-    let [taste, setTaste] = useState('default');
-    let [selectValue, setSelectValue] = useState('default');
+
+
 
     const opt = goods.map(e => ({ value: e.name, label: e.name }));
 
@@ -33,18 +32,14 @@ const GoodsPage = ({ goods, activeGood, GoodActive, AddGoodBasket, offers }) => 
             return;
         }
         else {
-            AddGoodBasket({ id: targetGood.name, taste: taste });
-            GoodActive(null)
-            console.log(offers);
+            GoodActive(null);
             return;
         }
     }
 
-
     const targetGood = goods.filter(good => good.id == activeGood)[0]
 
     const handleChangeProduct = () => setProduct(product);
-    const handleChangeTaste = () => setTaste(taste);
 
     return (
         <div className={c.super__main} onClick={() => { GoodActive(null); document.body.style.overflow = ''; }}>
@@ -65,7 +60,7 @@ const GoodsPage = ({ goods, activeGood, GoodActive, AddGoodBasket, offers }) => 
                 {goods.map(good => <Good key={good.id} good={good} id={good.id} />)}
             </div>
 
-            <GoodCardContainer good={targetGood} click={click} taste={taste} setTaste={setTaste} />
+            <GoodCardContainer good={targetGood} click={click} />
 
             <div className={c.menu__wrap}>
                 <Footer />
@@ -75,4 +70,4 @@ const GoodsPage = ({ goods, activeGood, GoodActive, AddGoodBasket, offers }) => 
 }
 
 
-export default connect(mapStateToProps, { GoodActive, AddGoodBasket })(GoodsPage);
+export default connect(mapStateToProps, { GoodActive })(GoodsPage);

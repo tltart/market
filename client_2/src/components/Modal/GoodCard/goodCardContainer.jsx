@@ -1,23 +1,31 @@
 import React from 'react';
 import GoodCard from './goodCard';
+import { AddGoodBasket } from '../../../store/goodsReducer';
+import {connect} from 'react-redux';
+import {useState} from 'react';
 import moment from 'moment';
-import { useState } from 'react';
-import { connect } from 'react-redux';
 
 
+let mapStateToProps = (state) => {
+    return {
+        offers: state.goods.offers,
+    }
+}
 
-const GoodCardContainer = ({ good, click, taste, setTaste }) => {
 
+const GoodCardContainer = ({ good, click, AddGoodBasket, offers }) => {
+
+    let [taste, setTaste] = useState('default');
     let [calendarDate, setCalendarDate] = useState(null);
 
     const selectHandle = (e) => {
-        setTaste(e.target.value);
-        
+        setTaste(e.target.value);        
     }
 
     const formHandle = (e) => {
         e.preventDefault();
-        console.log(moment(calendarDate).format("DD-MM-YYYY"));
+        setCalendarDate(calendarDate);
+        AddGoodBasket({ id: good.name, taste: taste, date: moment(calendarDate).format("DD-MM-YYYY")});
         click(e);
     }
 
@@ -32,4 +40,4 @@ const GoodCardContainer = ({ good, click, taste, setTaste }) => {
 
 
 
-export default GoodCardContainer
+export default connect(mapStateToProps, {AddGoodBasket})(GoodCardContainer)

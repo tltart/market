@@ -7,11 +7,7 @@ import CustomSelect from '../../SelectMenu/customSelect/customSelect';
 import iconBasket from '../../../assets/icons/selection.json';
 import IcomoonReact, { iconList } from "icomoon-react";
 
-
-
-
 registerLocale("ru", ru);
-
 
 const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle}) => {
 

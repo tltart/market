@@ -1,13 +1,17 @@
+import BasketItemContainer from '../components/basketItems/basketItemContainer';
 import React from 'react'
+import {connect} from 'react';
+
+
 
 
 const BasketPage = () =>{
 
     return(
         <div>
-            <h1>BasketPage Page</h1>
+            <BasketItemContainer />
         </div>
     )
 }
 
-export default BasketPage
+export default BasketPage;
