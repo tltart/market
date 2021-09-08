@@ -1,18 +1,93 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  input[type="number"]:hover,
+  input[type="number"]:focus {
+    -moz-appearance: number-input;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:root{
+    --height-counter: 35px;
+    --width-counter: 73px;
+    --width-plus-minus: calc(var(--width-counter)/4);
+    --height-plus-minus: var(--height-counter);
+    --width-input: calc(var(--width-counter)/3);
+    --height-input: calc(var(--height-counter) - 2px)
+}
+
 .counter{
     position: relative;
-    width: 55px;
-    height: 22px;
+    display: inline-block;
+    width: var(--width-counter);
+    height: var(--height-counter);
     background-color: rgba(187, 187, 187, 0.7);
     border-radius: 16px;
-    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
-.counter__window{
+.counter input{
+    padding: 0;
+    margin: 0;
+    width: var(--width-input);
+    height: var(--height-input);
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 24px;
-    height: 20px;
     z-index: 1;
     background-color: white;
+    text-align: center;
+    border-radius: 0px;
+    border: none;
 }
+.counter input:focus{
+    border: none;
+}
+
+.minus{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc((var(--width-counter) - var(--width-input))/2 - 2px);
+    height: var(--height-plus-minus);
+    border-radius: 16px 0px 0px 16px;
+    cursor: pointer;
+
+}
+.minus::before{
+    width: calc(var(--width-plus-minus)/2);
+    content: "";
+    border-bottom: 1px solid red;
+    
+}
+.plus{
+    position: absolute;
+    width: calc((var(--width-counter) - var(--width-input))/2 - 2px);
+    height: var(--height-counter);
+    right: 0;
+    border-radius: 0px 16px 16px 0px;
+    cursor: pointer;
+}
+
+.plus::before{
+    display: flex;
+    width: var(--width-plus-minus);
+    height: var(--height-counter);
+    align-items: center;
+    justify-content: center;
+    content: "+";
+    color: green;
+
+}
+
+

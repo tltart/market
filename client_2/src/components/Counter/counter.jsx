@@ -5,7 +5,10 @@ const Counter = () => {
 
     return (
         <div className={c.counter}>
-            <input className={c.counter__window}></input>
+            <div className={c.minus}></div>
+            <div className={c.plus}></div>
+            <input type="number" className={c.counter__window} placeholder="1"></input>
+            
         </div>
     )
 }

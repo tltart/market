@@ -5,17 +5,13 @@ import Counter from './counter'
 
 let mapStateToProps = (state) => {
     return{
-        offers
+        offers: state.goods.offers
     }
 }
 
 const CounterContainer = () => {
 
-    return(
-        <div>
-            <Counter />
-        </div>
-    )
+    return <Counter />
 }
 
-export default connect()(CounterContainer)
+export default connect(mapStateToProps)(CounterContainer)

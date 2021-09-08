@@ -19,8 +19,8 @@ let initialState = {
     countPage: 1,
     activeGood: null,
     offers: [
-        {id: '2shit', name: 'karamel', taste: 'shit', img: 'images/karamel.jpg', date: '21-09-2021'},
-        {id: '5shit', name: 'tort', taste: 'shit', img: 'images/tort.jpg', date: '21-09-2021'},
+        {id: '2plum', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 100, date: '21-09-2021'},
+        // {id: '5shit', name: 'tort', taste: 'shit', img: 'images/tort.jpg', date: '21-09-2021'},
     ]
 
 }
