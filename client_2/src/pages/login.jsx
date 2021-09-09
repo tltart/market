@@ -19,6 +19,7 @@ const LoginPage = () => {
                 <RegisterForm onSubmit={formHandle} title={"Войти"} isLogin={isLogin} />
                 :
                 <RegisterForm onSubmit={formHandle} title={"Регистрация"} isLogin={isLogin} />}
+                
 
             {isLogin ?
                 <div className={c.is__login}>

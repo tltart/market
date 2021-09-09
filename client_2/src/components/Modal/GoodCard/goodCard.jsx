@@ -41,6 +41,7 @@ const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectVal
                                                 selected={calendarDate}
                                                 onChange={e=> setCalendarDate(e)}
                                                 dateFormat="dd/MM/yyyy"
+                                                disabledKeyboardNavigation
                                             />
                                         </div>
                                     </div>

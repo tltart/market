@@ -9,6 +9,9 @@ const BasketItem = ({ offer }) => {
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>
+            <div className={c.close}>
+                <div className={c.close__icon}></div>
+            </div>
             <div className={c.line__top}></div>
             <div className={c.wrapper__item}>
                 <div className={c.img__wrapper}>
@@ -23,10 +26,10 @@ const BasketItem = ({ offer }) => {
                             <h2>{offer.price}₽</h2>
                         </div>
                         <div className={c.offer__price}>
-                            <span><h2>{offer.price} ₽</h2></span>
+                            <span><h2>Цена: {offer.price} ₽</h2></span>
                         </div>
                     </div>
-                    <div className={c.date}><h4>{offer.date}</h4></div>
+                    <div className={c.date}><span><h4>Забрать: {offer.date}</h4></span></div>
                 </div>
             </div>
         </div>
