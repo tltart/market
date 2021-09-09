@@ -9,7 +9,7 @@ import IcomoonReact, { iconList } from "icomoon-react";
 
 registerLocale("ru", ru);
 
-const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle}) => {
+const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle, taste, cal}) => {
 
     return (
         <div className={!good ? `${c.card__wrap}` : `${c.card__wrap} ${c.active}`}>
@@ -28,7 +28,7 @@ const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectVal
                                 <h2>Цена: {good.price}</h2>
                                 <div className={c.footer_wrapper}>
                                     <div className={c.option__wrapper}>
-                                        <div className={c.select__wrap}>
+                                        <div className={taste != 'warning' ? `${c.select__wrap}` : `${c.select__wrap} ${c.warning}`}>
                                             <CustomSelect changee={selectHandle} value={selectValue}/>
                                         </div>
                                         <div className={c.calendar}>

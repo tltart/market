@@ -3,8 +3,6 @@ import React from 'react'
 import c from './login.module.css'
 import { NavLink, useLocation } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts'
-import CustomSelect from 'components/SelectMenu/customSelect/customSelect';
-import SelectForm from 'components/common/selectForm/selectForm';
 
 
 const LoginPage = () => {
