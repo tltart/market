@@ -64,7 +64,7 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
     const handleChangeProduct = () => setProduct(product);
 
     console.log("RENDER GOODS PAGE");
-
+    
     return (
         <div className={c.super__main} onClick={rootClick}>
             <div className={c.sel}>
