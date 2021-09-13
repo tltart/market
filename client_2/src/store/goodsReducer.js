@@ -37,7 +37,7 @@ const goodsReducer = (state = initialState, action) => {
         case ADD_GOOD_BASKET:
             return { ...state, offers: [...state.offers, action.payload] }
         case REMOVE_GOOD_BASKET:
-            return { ...state, offers: [...state.offers.filter( offer => offer.id != action.payload)]}
+            return { ...state, offers: [...state.offers.filter( offer => offer.id !== action.payload)]}
         default:
             return state;
     }
