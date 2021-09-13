@@ -1,5 +1,8 @@
+
+
 const ACTIVE = "ACTIVE"
 const ADD_GOOD_BASKET = "ADD_GOOD_BASKET"
+const REMOVE_GOOD_BASKET = "REMOVE_GOOD_BASKET"
 
 let initialState = {
 
@@ -33,6 +36,8 @@ const goodsReducer = (state = initialState, action) => {
             return { ...state, activeGood: action.payload }
         case ADD_GOOD_BASKET:
             return { ...state, offers: [...state.offers, action.payload] }
+        case REMOVE_GOOD_BASKET:
+            return { ...state, offers: [...state.offers.filter( offer => offer.id != action.payload)]}
         default:
             return state;
     }
@@ -40,5 +45,6 @@ const goodsReducer = (state = initialState, action) => {
 
 export const GoodActive = (item) => ({ type: ACTIVE, payload: item })
 export const AddGoodBasket = (good) => ({ type: ADD_GOOD_BASKET, payload: good })
+export const RemoveGoodBasket = (id) => ({ type: REMOVE_GOOD_BASKET, payload: id })
 
 export default goodsReducer;

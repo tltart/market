@@ -3,13 +3,12 @@ import c from './inputForm.module.css'
 
 
 const InputForm = ({ input, meta, ...props }) => {
-
     return (
         <div className={c.forma}>
             <input {...input} {...props} />
             <div>
                 {meta.touched && meta.error &&
-                    <p>{meta.error}</p>}
+                    <p className={c.error}>{meta.error}</p>}
             </div>
         </div>
     )

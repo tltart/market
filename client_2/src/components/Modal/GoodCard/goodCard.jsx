@@ -1,5 +1,6 @@
 import React from 'react';
 import c from './goodCard.module.css';
+import cc from '../../SelectMenu/customSelect/customSelect.module.css'
 import Calendar, { registerLocale } from 'react-datepicker';
 import ru from "date-fns/locale/ru";
 import 'react-datepicker/dist/react-datepicker.css'
@@ -9,7 +10,7 @@ import IcomoonReact, { iconList } from "icomoon-react";
 
 registerLocale("ru", ru);
 
-const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle, taste, cal}) => {
+const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle, taste, cal, warning, setWarning}) => {
 
     return (
         <div className={!good ? `${c.card__wrap}` : `${c.card__wrap} ${c.active}`}>
@@ -28,10 +29,10 @@ const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectVal
                                 <h2>Цена: {good.price}</h2>
                                 <div className={c.footer_wrapper}>
                                     <div className={c.option__wrapper}>
-                                        <div className={taste != 'warning' ? `${c.select__wrap}` : `${c.select__wrap} ${c.warning}`}>
-                                            <CustomSelect changee={selectHandle} value={selectValue}/>
+                                        <div className={warning !== 'warning__taste' ? `${c.select__wrap}` : `${c.select__wrap} ${cc.warning}`}>
+                                            <CustomSelect changee={selectHandle} value={selectValue} />
                                         </div>
-                                        <div className={c.calendar}>
+                                        <div className={warning !== "warning__date" ? `${c.calendar}` : `${c.calendar} ${c.warning}`}>
                                             <Calendar
                                                 locale="ru"
                                                 filterDate={d => {

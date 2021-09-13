@@ -3,6 +3,7 @@ import React from 'react'
 import c from './login.module.css'
 import { NavLink, useLocation } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from '../utils/consts'
+import Footer from 'components/common/Footer/footer';
 
 
 const LoginPage = () => {
@@ -14,6 +15,7 @@ const LoginPage = () => {
     const isLogin = location.pathname === LOGIN_ROUTE;
 
     return (
+        <>
         <div className={c.login}>
             {isLogin ?
                 <RegisterForm onSubmit={formHandle} title={"Войти"} isLogin={isLogin} />
@@ -32,6 +34,9 @@ const LoginPage = () => {
             }
 
         </div>
+
+        <Footer />
+    </>
     )
 }
 

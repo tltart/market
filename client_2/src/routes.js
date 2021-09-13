@@ -30,8 +30,8 @@ export const publicRoutes = [
         Component: GOODS_PAGE
     },
     {
-        path: GOOD_ROUTE + '/:id',
-        Component: GOOD_CARD
+        path: SHOP_ROUTE + '/:id',
+        Component: GOODS_PAGE
     },
     {
         path: BASKET_ROUTE,

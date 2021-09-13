@@ -4,12 +4,12 @@ import c from './basketItem.module.css'
 
 
 
-const BasketItem = ({ offer }) => {
+const BasketItem = ({ offer, removeItem }) => {
 
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>
-            <div className={c.close}>
+            <div className={c.close} onClick={()=>removeItem(offer.id)}>
                 <div className={c.close__icon}></div>
             </div>
             <div className={c.line__top}></div>

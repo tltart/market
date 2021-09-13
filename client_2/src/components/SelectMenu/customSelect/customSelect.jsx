@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import c from './customSelect.module.css'
 
-const CustomSelect = ({changee, value}) => {
+const CustomSelect = ({changee, value, warning}) => {
 
 
     return (

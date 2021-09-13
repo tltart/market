@@ -24,4 +24,8 @@ select > option{
 	color: black;
 }
 
+.warning select{
+	border: 2px solid red;
+}
+
 

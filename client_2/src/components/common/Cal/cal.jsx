@@ -1,17 +1,19 @@
 import React from 'react';
 import Calendar from 'react-datepicker';
 import { useState } from 'react'
-
+import c from './cal.module.css'
 
 
 
 
 const Cal = ({ input, meta, ...props }) => {
   let [calendarDatee, setCalendarDatee] = useState(null);
-  
+
   return (
-    <>
+    <div className={c.forma}>
       <Calendar
+        {...input}
+        {...props}
         filterDate={d => {
           return new Date() < d;
         }}
@@ -22,9 +24,9 @@ const Cal = ({ input, meta, ...props }) => {
       />
       <div>
         {meta.touched && meta.error &&
-          <p>{meta.error}</p>}
+          <p className={c.error}>{meta.error}</p>}
       </div>
-    </>
+    </div>
   )
 }
 
