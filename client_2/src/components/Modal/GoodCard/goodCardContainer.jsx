@@ -32,14 +32,16 @@ const GoodCardContainer = ({ good, click, AddGoodBasket, offers }) => {
             setWarningDiv('');
             setTaste('default');
             setCalendarDate(null);
+            let bb = JSON.stringify({ good: good.id, taste: good.taste });
+            window.localStorage.setItem(good.id, bb)
         }
-        else if(!calendarDate){
+        else if (!calendarDate) {
             setWarningDiv('warning__date');
         }
         else {
             setWarningDiv('warning__taste');
         }
-        
+
     }
 
     return (

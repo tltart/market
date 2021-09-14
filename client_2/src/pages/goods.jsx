@@ -13,22 +13,22 @@ import { useHistory } from 'react-router-dom';
 let mapStateToProps = (state) => {
     return {
         goods: state.goods.goods,
-        activeGood: state.goods.activeGood
+        activeGood: state.goods.activeGood,
+        names: state.goods.names,
     }
 };
 
-const GoodsPage = ({ goods, activeGood, GoodActive }) => {
+const GoodsPage = ({ goods, names, activeGood, GoodActive, SelectNameGood }) => {
 
     const history = useHistory();
 
     let [product, setProduct] = useState();
 
-
     useEffect(() => {
         hashCheck(window.location.hash);
     }, [window.location.hash]);
 
-    const optionSelect = goods.map(e => ({ value: e.name, label: e.name }));
+    const optionSelect = names.map(e => ({ value: e, label: e }));
 
     const hashCheck = (e) => {
         if (!e) {
@@ -61,21 +61,23 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
 
     const targetGood = goods.filter(good => good.id == activeGood)[0];
 
-    const handleChangeProduct = () => setProduct(product);
-
-    console.log("RENDER GOODS PAGE");
+    const handleChangeProduct = (product) => {
+        product.label === "Все" ? setProduct('') : setProduct(product)
+  
+    }
     
     return (
         <div className={c.super__main} onClick={rootClick}>
             <div className={c.sel}>
                 <h2>Выбрать категорию</h2>
-                <SelectMenu value={product} onChange={handleChangeProduct} options={optionSelect} placeholder={"Выбрать продукт"} />
+                <SelectMenu product={product} handleChange={handleChangeProduct} options={optionSelect} />
             </div>
             <div>
                 <h5>Есть в наличии</h5>
             </div>
             <div className={c.main}>
-                {goods.map(good => <Good key={good.id} good={good} click={click} id={good.id} />)}
+                {goods.filter(good => product ? product.label === good.name : true).
+                    map(good => <Good key={good.id} good={good} click={click} id={good.id} />)}
             </div>
             {/* <div>
                 <h5>Заказать</h5>
@@ -83,7 +85,6 @@ const GoodsPage = ({ goods, activeGood, GoodActive }) => {
             <div className={c.main}>
                 {goods.map(good => <Good key={good.id} good={good} id={good.id} />)}
             </div> */}
-
             <GoodCardContainer good={targetGood} click={click} />
 
             <div className={c.menu__wrap}>
