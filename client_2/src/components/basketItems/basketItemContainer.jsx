@@ -17,19 +17,25 @@ let mapStateToProps = (state) => {
 
 const BasketItemContainer = ({ offers, RemoveGoodBasket }) => {
 
-    let [loca, setLoca] = useState()
+    const ll = [...Array()].map((_, i) => i)
 
-    
+    const storeGet = () => {
+        for(let i=0; i<localStorage.length; i++) {
+            let key = localStorage.key(i);
+            ll.push(JSON.parse(localStorage.getItem(key))); 
+        }
+    }
+
     useEffect(() => {
-
-    })
+        storeGet()
+    }, [offers])
 
     const removeItem = (id) => {
         RemoveGoodBasket(id)
     }
     return (
         <div>
-            {offers && offers.map(offer => <BasketItem key={offer.id} offer={offer} removeItem={removeItem} />)}
+            {ll && ll.map(ll => <BasketItem key={ll.good} offer={ll} removeItem={removeItem} />)}
         </div>
     )
 
