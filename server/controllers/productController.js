@@ -1,4 +1,4 @@
-const { product, productInfo } = require('../models/models');
+const { product, productInfo, taste } = require('../models/models');
 const ApiError = require('../errors/apiError');
 const uuid = require('uuid');
 const path = require('path');
@@ -12,12 +12,7 @@ class ProductController {
             const { img } = req.files;
             let filename = uuid.v4() + ".jpg";
             img.mv(path.resolve(__dirname, '..', 'static', filename))
-            const product_ = await product.create({ name, price, img: filename });
-
-            if (info) {
-                info = JSON.parse(info);
-                info.foreach(i => productInfo.create({ title: i.title, description: i.description }))
-            }
+            const product_ = await product.create({ name, price, img: filename, info });
 
             return res.json(product_)
         }
@@ -36,13 +31,27 @@ class ProductController {
         }
         return res.json(product_);
     }
-    async getOne(req, res){
-        const {id} = req.params;
+    async getOne(req, res) {
+        const { id } = req.params;
         const product_ = await product.findOne({
-            where: {id},
-            include: [{model: productInfo, as: 'info'}]
+            where: { id },
+            include: [{ model: productInfo, as: 'info' }]
         })
         return res.json(product_);
+    }
+
+    async createTaste(req, res, next) {
+
+        try {
+            const { name } = req.body;
+            const name_ = await taste.create({ name });
+
+            return res.json(name_)
+        }
+
+        catch (e) {
+            next(ApiError.BadRequest(e.message))
+        }
     }
 }
 

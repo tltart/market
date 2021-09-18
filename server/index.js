@@ -21,11 +21,11 @@ app.use('/api', router);
 
 app.use(errorMiddleware);
 
-const start = async() =>{
+const start = async () => {
     try {
         await sequelize.authenticate();
         await sequelize.sync();
-        app.listen(PORT, ()=>{console.log(`Сервер работает на порту ${PORT}`)})
+        app.listen(PORT, () => { console.log(`Сервер работает на порту ${PORT}`) })
     } catch (e) {
         console.log(e);
     }
