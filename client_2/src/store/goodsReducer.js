@@ -3,6 +3,7 @@
 const ACTIVE = "ACTIVE"
 const ADD_GOOD_BASKET = "ADD_GOOD_BASKET"
 const REMOVE_GOOD_BASKET = "REMOVE_GOOD_BASKET"
+const GOOD_COUNT = "GOOD_COUNT"
 
 let initialState = {
 
@@ -23,8 +24,8 @@ let initialState = {
     countPage: 1,
     activeGood: null,
     offers: [
-        { id: '2plum', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 100, date: '21-09-2021' },
-        { id: '2plumm', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 1729, date: '21-09-2021' },
+        // { id: '2plum', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 100, date: '21-09-2021' },
+        // { id: '2plumm', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 1729, date: '21-09-2021' },
     ]
 
 }
@@ -34,9 +35,21 @@ const goodsReducer = (state = initialState, action) => {
         case ACTIVE:
             return { ...state, activeGood: action.payload }
         case ADD_GOOD_BASKET:
+            let bb = JSON.stringify(action.payload);
+            window.localStorage.setItem(action.payload.id, bb)
             return { ...state, offers: [...state.offers, action.payload] }
         case REMOVE_GOOD_BASKET:
             return { ...state, offers: [...state.offers.filter(offer => offer.id !== action.payload)] }
+        case GOOD_COUNT:
+            console.log("GOOD_COUNT");
+            let { id, count } = action.payload;
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                localStorage.setItem(key, JSON.stringify({ ...state, count: [...state.offers.reduce(acc, cur => offer.id == id ?  = count : false)] }))
+                }
+                
+            }
+            return { ...state, offers: [...state.offers.map(offer => offer.id == id ? offer.count = count : offer)] }
         default:
             return state;
     }
@@ -45,6 +58,7 @@ const goodsReducer = (state = initialState, action) => {
 export const GoodActive = (item) => ({ type: ACTIVE, payload: item })
 export const AddGoodBasket = (good) => ({ type: ADD_GOOD_BASKET, payload: good })
 export const RemoveGoodBasket = (id) => ({ type: REMOVE_GOOD_BASKET, payload: id })
+export const GoodCount = (offer) => ({ type: GOOD_COUNT, payload: offer })
 
 
 export default goodsReducer;

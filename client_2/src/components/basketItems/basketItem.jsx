@@ -5,7 +5,6 @@ import c from './basketItem.module.css'
 
 
 const BasketItem = ({ offer, removeItem }) => {
-
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>
@@ -21,7 +20,7 @@ const BasketItem = ({ offer, removeItem }) => {
                     <div className={c.taste}>{offer.taste}</div>
                     <div className={c.price}>
                         <div className={c.counter__wrapper}>
-                            <CounterContainer />
+                            <CounterContainer offer={offer}/>
                             <h2>X</h2>
                             <h2>{offer.price}₽</h2>
                         </div>

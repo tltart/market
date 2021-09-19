@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BasketItem from './basketItem';
-import { RemoveGoodBasket } from '../../store/goodsReducer';
+import { RemoveGoodBasket, AddGoodBasket } from '../../store/goodsReducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -15,33 +15,43 @@ let mapStateToProps = (state) => {
 
 
 
-const BasketItemContainer = ({ offers, RemoveGoodBasket }) => {
-
-    // const ll = [...Array(0)].map((_, i) => i)
-
-    let ll = [];
+const BasketItemContainer = ({ offers, RemoveGoodBasket, AddGoodBasket }) => {
 
     const storeGet = () => {
-        for(let i=0; i<localStorage.length; i++) {
-            let key = localStorage.key(i);
-            ll.push(JSON.parse(localStorage.getItem(key)));
+        if (!offers.length) {
+            if (localStorage.length) {
+                console.log("Беру из localStorage");
+                for (let i = 0; i < localStorage.length; i++) {
+                    let key = localStorage.key(i);
+                    AddGoodBasket(JSON.parse(localStorage.getItem(key)));
+                }
+            }
         }
     }
 
-    ll = JSON.parse(localStorage.getItem(id));
-
-    console.log(ll);
+    useEffect(() => {
+        storeGet()
+    }, [localStorage]);
 
     const removeItem = (id) => {
-        RemoveGoodBasket(id)
+        console.log(id);
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            if (JSON.parse(localStorage.getItem(key)).id == id) {
+                console.log(id);
+                RemoveGoodBasket(id);
+                localStorage.removeItem(key);
+                window.location.href = '';
+            }
+        }
     }
 
     return (
         <div>
-            {ll && ll.map(ll => <BasketItem key={ll.good} offer={ll} removeItem={removeItem} />)}
+            {offers && offers.map(offer => <BasketItem key={offer.id} offer={offer} removeItem={removeItem} />)}
         </div>
     )
 
 }
 
-export default connect(mapStateToProps, { RemoveGoodBasket })(BasketItemContainer)
+export default connect(mapStateToProps, { RemoveGoodBasket, AddGoodBasket })(BasketItemContainer)
