@@ -45,14 +45,19 @@ const goodsReducer = (state = initialState, action) => {
             let { id, count } = action.payload;
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
-                localStorage.setItem(key, JSON.stringify({ ...state, count: [...state.offers.reduce(acc, cur => offer.id == id ?  = count : false)] }))
+                if (key == id) {
+                    let gg = JSON.parse(localStorage.getItem(id));
+                    gg.count = count;
+                    console.log(gg);
+                    localStorage.setItem(id, JSON.stringify(gg))
                 }
-                
             }
+            debugger
             return { ...state, offers: [...state.offers.map(offer => offer.id == id ? offer.count = count : offer)] }
         default:
             return state;
     }
+
 }
 
 export const GoodActive = (item) => ({ type: ACTIVE, payload: item })
