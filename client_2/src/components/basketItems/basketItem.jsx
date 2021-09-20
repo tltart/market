@@ -1,10 +1,14 @@
 import CounterContainer from '../Counter/counterContainer';
 import React from 'react';
 import c from './basketItem.module.css'
+import { useEffect } from 'react';
 
 
 
-const BasketItem = ({ offer, removeItem }) => {
+const BasketItem = ({ offer, removeItem, price_total }) => {
+
+    console.log("Render Basket Item");
+
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>
@@ -25,7 +29,7 @@ const BasketItem = ({ offer, removeItem }) => {
                             <h2>{offer.price}₽</h2>
                         </div>
                         <div className={c.offer__price}>
-                            <span><h2>Цена: {offer.price} ₽</h2></span>
+                            <span><h2>Цена: {price_total} ₽</h2></span>
                         </div>
                     </div>
                     <div className={c.date}><span><h4>Забрать: {offer.date}</h4></span></div>

@@ -41,19 +41,16 @@ const goodsReducer = (state = initialState, action) => {
         case REMOVE_GOOD_BASKET:
             return { ...state, offers: [...state.offers.filter(offer => offer.id !== action.payload)] }
         case GOOD_COUNT:
-            console.log("GOOD_COUNT");
             let { id, count } = action.payload;
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
                 if (key == id) {
                     let gg = JSON.parse(localStorage.getItem(id));
                     gg.count = count;
-                    console.log(gg);
-                    localStorage.setItem(id, JSON.stringify(gg))
+                    localStorage.setItem(id, JSON.stringify(gg));
                 }
             }
-            debugger
-            return { ...state, offers: [...state.offers.map(offer => offer.id == id ? offer.count = count : offer)] }
+            return { ...state, ...state.offers.map(offer => offer.id == id ? offer.count = count : offer) };
         default:
             return state;
     }

@@ -12,26 +12,35 @@ let mapStateToProps = (state) => {
     }
 }
 
-const CounterContainer = ({offer, GoodCount}) => {
+const CounterContainer = ({ offer, GoodCount }) => {
 
     let [count, setCount] = useState(offer.count);
 
     const change = (e) => {
         e.preventDefault();
-        setCount(e.target.value)
+        setCount(e.target.value);
+        GoodCount({ count: count, id: offer.id });
     }
+
+    useEffect(() => {
+        GoodCount({ count: count, id: offer.id });
+    }, [count])
 
     const plusCounter = (e) => {
-        console.log("pluss");
-        setCount(count+1)
-        GoodCount({count: count, id: offer.id});
+        e.preventDefault();
+        setCount(count + 1);
+
     }
     const minusCounter = (e) => {
-        console.log("minus");
-        setCount(count-1)
-        GoodCount(count, offer.id);
+        if (count > 1) {
+            e.preventDefault();
+            setCount(count - 1);
+            return
+        }
+        alert("Значение не может быть меньше одного!!!");
     }
 
+    console.log("Render Counter Container");
 
     return <Counter minusCounter={minusCounter} plusCounter={plusCounter} count={count} change={change} />
 }
