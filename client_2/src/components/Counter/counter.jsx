@@ -3,7 +3,6 @@ import c from './counter.module.css';
 
 const Counter = ({minusCounter, plusCounter, count, change}) => {
 
-    console.log("Render Counter Container");
 
     return (
         <div className={c.counter}>

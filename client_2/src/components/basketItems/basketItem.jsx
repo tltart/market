@@ -7,12 +7,10 @@ import { useEffect } from 'react';
 
 const BasketItem = ({ offer, removeItem, price_total }) => {
 
-    console.log("Render Basket Item");
-
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>
-            <div className={c.close} onClick={()=>removeItem(offer.id)}>
+            <div className={c.close} onClick={() => removeItem(offer.id)}>
                 <div className={c.close__icon}></div>
             </div>
             <div className={c.line__top}></div>
@@ -24,7 +22,7 @@ const BasketItem = ({ offer, removeItem, price_total }) => {
                     <div className={c.taste}>{offer.taste}</div>
                     <div className={c.price}>
                         <div className={c.counter__wrapper}>
-                            <CounterContainer offer={offer}/>
+                            <CounterContainer offer={offer} />
                             <h2>X</h2>
                             <h2>{offer.price}₽</h2>
                         </div>

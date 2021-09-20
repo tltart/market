@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import BasketItem from './basketItem';
 import { useEffect } from 'react';
 import { AddGoodBasket, RemoveGoodBasket } from '../../store/goodsReducer'
+import { useState } from 'react';
 
 
 let mapStateToProps = (state) => {
@@ -27,8 +28,8 @@ const BasketItemContainer = ({ offers, AddGoodBasket, RemoveGoodBasket }) => {
     }
 
     useEffect(() => {
-        storeGet()
-    }, [offers]);
+        storeGet();
+    }, [localStorage]);
 
 
     const removeItem = (id) => {
@@ -42,11 +43,9 @@ const BasketItemContainer = ({ offers, AddGoodBasket, RemoveGoodBasket }) => {
         }
     }
 
-    console.log("Render Basket Container");
-
     return (
         <div>
-            {offers && offers.map(offer => <BasketItem key={offer.id} offer={offer} removeItem={removeItem} price_total={offer.price * offer.count} />)}
+            {offers && offers.map(offer => <BasketItem key={offer.id} offer={offer} removeItem={removeItem} price_total={offer.totalPriceProduct} />)}
         </div>
     )
 

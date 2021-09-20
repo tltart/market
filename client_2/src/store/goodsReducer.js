@@ -20,13 +20,9 @@ let initialState = {
         { id: 10, name: 'tort', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', price: 150, weight: 88, img: 'images/tort.jpg', taste: ['malina', 'banana', 'caramel', 'penapple', 'watermelon', 'coffee'] }
     ],
     names: ['Все', 'zephir', 'karamel', 'maffin', 'marshmelloy', 'tort'],
-    pageSize: 5,
-    countPage: 1,
     activeGood: null,
-    offers: [
-        // { id: '2plum', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 100, date: '21-09-2021' },
-        // { id: '2plumm', name: 'karamel', taste: 'plum', img: 'images/karamel.jpg', price: 1729, date: '21-09-2021' },
-    ]
+    offers: [],
+    totalPrice: 0
 
 }
 
@@ -50,7 +46,20 @@ const goodsReducer = (state = initialState, action) => {
                     localStorage.setItem(id, JSON.stringify(gg));
                 }
             }
-            return { ...state, ...state.offers.map(offer => offer.id == id ? offer.count = count : offer) };
+            let stateCopy = { ...state };
+            stateCopy.offers = [...state.offers];
+            stateCopy.totalPrice = 0;
+            stateCopy.offers.map(offer => {
+                if (offer.id == id) {
+                    offer.count = count;
+                    offer.totalPriceProduct = count * offer.price;
+                    stateCopy.totalPrice += offer.totalPriceProduct;
+                    return
+                }
+                stateCopy.totalPrice += offer.totalPriceProduct;
+                return offer
+            })
+            return stateCopy;
         default:
             return state;
     }

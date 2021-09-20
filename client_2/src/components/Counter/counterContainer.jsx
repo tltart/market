@@ -40,7 +40,6 @@ const CounterContainer = ({ offer, GoodCount }) => {
         alert("Значение не может быть меньше одного!!!");
     }
 
-    console.log("Render Counter Container");
 
     return <Counter minusCounter={minusCounter} plusCounter={plusCounter} count={count} change={change} />
 }
