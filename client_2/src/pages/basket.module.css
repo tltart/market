@@ -2,6 +2,12 @@
     margin-bottom: 70px;
 }
 
+.wrapper > h1:first-child {
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+
 #total__price{
     /* border: 2px solid red; */
     padding-top: 15px;
@@ -31,4 +37,10 @@ button.basket__button{
 }
 button.basket__button:focus{
     background-color: #29a047;
+}
+
+h2.out__offer{
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
 }

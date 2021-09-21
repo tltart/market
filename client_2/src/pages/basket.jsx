@@ -12,6 +12,12 @@ const mapStateToProps = (state) => {
 }
 
 const BasketPage = ({ offers, totalPrice}) => {
+
+    const buyOffer = (e) => {
+        e.preventDefault();
+        console.log("Ваш заказ отправлен в работу");
+    }
+
     return (
         <div className={c.wrapper}>
             <h1>Корзина</h1>
@@ -19,10 +25,10 @@ const BasketPage = ({ offers, totalPrice}) => {
             {offers.length ?
                 <div>
                     <h1 id={c.total__price}>Итого: {totalPrice} ₽</h1>
-                    <div className={c.button__wrapper}><button className={c.basket__button}>Оформить заказ</button></div>
+                    <div className={c.button__wrapper}><button className={c.basket__button} onClick={buyOffer}>Оформить заказ</button></div>
                 </div>
                 :
-                <h2 className={c.}>В корзине нет заказов</h2>
+                <h2 className={c.out__offer}>В корзине нет заказов</h2>
             }
             <Footer />
         </div>

@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '../src/store/store'
 import AppRoutes from './components/AppRoutes'
-import Header from 'components/Header/header'
+import Header from './components/Header/header'
 
 
 function App() {

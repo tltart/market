@@ -1,5 +1,6 @@
 .wrap{
     display: flex;
+    background-color: lightblue;
     width: 100vw;
     align-items: center;
     justify-content: center;
