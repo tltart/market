@@ -6,11 +6,11 @@ import ru from "date-fns/locale/ru";
 import 'react-datepicker/dist/react-datepicker.css'
 import CustomSelect from '../../SelectMenu/customSelect/customSelect';
 import iconBasket from '../../../assets/icons/selection.json';
-import IcomoonReact, { iconList } from "icomoon-react";
+import IcomoonReact from "icomoon-react";
 
 registerLocale("ru", ru);
 
-const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle, taste, cal, warning, setWarning}) => {
+const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectValue, formHandle, warning }) => {
 
     return (
         <div className={!good ? `${c.card__wrap}` : `${c.card__wrap} ${c.active}`}>

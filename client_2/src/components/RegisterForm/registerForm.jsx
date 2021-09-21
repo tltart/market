@@ -17,7 +17,7 @@ let RegisterForm = props => {
         <Field name='password' type='password' component={InputForm} placeholder="Введите пароль" validate={[required]} />
         {/* <Field name='date' type='text' component={Cal} placeholder="Дату" validate={[required]} /> */}
         {!isLogin && <Field name='password' type='password' component={InputForm} placeholder="Повторите пароль" validate={[required]} />}
-        <button className={c.button}>Регистрация</button>
+        <button id={c.button}>Регистрация</button>
       </form>
     </div>
   )
