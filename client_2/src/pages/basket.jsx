@@ -3,19 +3,25 @@ import React from 'react';
 import Footer from 'components/common/Footer/footer';
 import c from './basket.module.css';
 import { connect } from 'react-redux';
+import { useState } from 'react'
+import orderReducer, {Ordering} from '../store/orderReducer'
 
 const mapStateToProps = (state) => {
     return {
         offers: state.goods.offers,
-        totalPrice: state.goods.totalPrice
+        totalPrice: state.goods.totalPrice,
+        orders: state.orders.orders
     }
 }
 
-const BasketPage = ({ offers, totalPrice}) => {
+const BasketPage = ({ offers, totalPrice, Ordering, orders }) => {
+
+    let [active, setActive] = useState(false)
 
     const buyOffer = (e) => {
         e.preventDefault();
-        console.log("Ваш заказ отправлен в работу");
+        setActive(true);
+        Ordering(offers);
     }
 
     return (
@@ -28,11 +34,16 @@ const BasketPage = ({ offers, totalPrice}) => {
                     <div className={c.button__wrapper}><button className={c.basket__button} onClick={buyOffer}>Оформить заказ</button></div>
                 </div>
                 :
-                <h2 className={c.out__offer}>В корзине нет заказов</h2>
+                <h2 className={c.empty__basket}>В корзине нет заказов</h2>
+            }
+            {active &&
+                <div className={`${c.success__offers} ${c.active}`}>
+                    <h2 className={c.success__card}>Ваш заказ отправлен</h2>
+                </div>
             }
             <Footer />
         </div>
     )
 }
 
-export default connect(mapStateToProps)(BasketPage);
+export default connect(mapStateToProps, {Ordering})(BasketPage);

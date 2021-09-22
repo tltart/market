@@ -1,29 +1,24 @@
-.super__main{
+.super__main {
     display: flex;
     flex-direction: column;
     margin-bottom: 70px;
 }
 
-.main{
+.main {
     display: flex;
     margin-top: 10px;
     justify-content: space-evenly;
     width: 100vw;
     flex-wrap: wrap;
-
-}
-.main > div:last-of-type {
-
 }
 
-.sel > h2{
+.sel>h2 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.sel{
+.sel {
     align-self: center;
     margin-top: 10px;
     width: 80vw;
 }
-
