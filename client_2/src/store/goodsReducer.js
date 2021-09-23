@@ -29,21 +29,41 @@ const goodsReducer = (state = initialState, action) => {
         case ACTIVE:
             return { ...state, activeGood: action.payload }
         case ADD_GOOD_BASKET:
-            let bb = JSON.stringify(action.payload);
-            window.localStorage.setItem(action.payload.id, bb)
+            if (localStorage.getItem('offer')) {
+                let ol = JSON.parse(localStorage.getItem('offer'));
+                
+                console.log(ol);
+                ol.push(action.payload);
+                window.localStorage.setItem('offer', JSON.stringify(ol))
+                return { ...state, offers: [...state.offers, action.payload] }
+            }
+            window.localStorage.setItem('offer', JSON.stringify([action.payload]))
             return { ...state, offers: [...state.offers, action.payload] }
         case REMOVE_GOOD_BASKET:
             return { ...state, offers: [...state.offers.filter(offer => offer.id !== action.payload)] }
         case GOOD_COUNT:
             let { id, count } = action.payload;
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                if (key == id) {
-                    let gg = JSON.parse(localStorage.getItem(id));
-                    gg.count = count;
-                    localStorage.setItem(id, JSON.stringify(gg));
+            let ol = JSON.parse(localStorage.offer);
+            for (let i = 0; i < ol.length; i++) {
+                if (ol[i].id == id){
+                    ol[i].id = count;
                 }
+
             }
+            localStorage.setItem('offer', ol);
+            
+            // let nn = ol.map(item => id == item.id ? item.count = count : item);
+            // console.log(nn);
+            // console.log(ol);
+            // localStorage.setItem('offer', JSON.parse(localStorage.offer).map(item => id == item.id ? item.count = count : item))
+            // for (let i = 0; i < localStorage.length; i++) {
+            //     let key = localStorage.key(i);
+            //     if (key == id) {
+            //         let gg = JSON.parse(localStorage.getItem(id));
+            //         gg.count = count;
+            //         localStorage.setItem(id, JSON.stringify(gg));
+            //     }
+            // }
             let stateCopy = { ...state };
             stateCopy.offers = [...state.offers];
             stateCopy.totalPrice = 0;

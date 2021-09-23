@@ -18,11 +18,8 @@ const BasketItemContainer = ({ offers, AddGoodBasket, RemoveGoodBasket }) => {
 
     const storeGet = () => {
         if (!offers.length) {
-            if (localStorage.length) {
-                for (let i = 0; i < localStorage.length; i++) {
-                    let key = localStorage.key(i);
-                    AddGoodBasket(JSON.parse(localStorage.getItem(key)));
-                }    
+            if (localStorage.getItem('offer')) {
+                JSON.parse(localStorage.getItem('offer')).map(item => AddGoodBasket(item)); 
             }
         }
     }
