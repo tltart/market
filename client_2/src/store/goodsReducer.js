@@ -45,16 +45,12 @@ const goodsReducer = (state = initialState, action) => {
             return { ...state, offers: [...state.offers, action.payload] }
 
         case REMOVE_GOOD_BASKET:
+            let zz = JSON.parse(localStorage.getItem('offer')).filter(item => item.id != action.payload);
+            localStorage.setItem('offer', JSON.stringify(zz));
             return { ...state, offers: [...state.offers.filter(offer => offer.id !== action.payload)] }
 
         case GOOD_COUNT:
             let { id, count } = action.payload;
-            console.log(id);
-            let ol = JSON.parse(localStorage.getItem('offer'));
-            console.log(ol);
-            let ne = ol.map(item => item.id == id ? item.count = count : item)
-            // localStorage.setItem('offer', ne);
-            console.log(ne);
             let stateCopy = { ...state };
             stateCopy.offers = [...state.offers];
             stateCopy.totalPrice = 0;
@@ -68,6 +64,7 @@ const goodsReducer = (state = initialState, action) => {
                 stateCopy.totalPrice += offer.totalPriceProduct;
                 return offer
             })
+            localStorage.setItem('offer', JSON.stringify(stateCopy.offers))
             return stateCopy;
         default:
             return state;

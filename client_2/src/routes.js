@@ -1,8 +1,8 @@
 import LOGIN_PAGE from './pages/login'
 import GOODS_PAGE from './pages/goods'
 import BASKET_PAGE from './pages/basket'
-import GOOD_CARD from 'components/Modal/GoodCard/goodCard';
-import {SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, REGISTRATION_ROUTE, GOOD_ROUTE} from './utils/consts';
+import TRACK_PAGE from './pages/track'
+import {SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, REGISTRATION_ROUTE, TRACK_ROUTE} from './utils/consts';
 
 
 export const authRoutes = [
@@ -36,7 +36,12 @@ export const publicRoutes = [
     {
         path: BASKET_ROUTE,
         Component: BASKET_PAGE
-    }
+    },
+    {
+        path: TRACK_ROUTE,
+        Component: TRACK_PAGE
+    },
+
 
 
 ]

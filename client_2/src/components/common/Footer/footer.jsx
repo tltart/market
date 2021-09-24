@@ -16,7 +16,7 @@ const Footer = () => {
             <NavLink to='/' >
                 <img src={home} alt="home" />
             </NavLink>
-            <NavLink to='/search'>
+            <NavLink to='/track'>
                 <img src={search} alt="search" />
             </NavLink>
             <NavLink to={BASKET_ROUTE}>
