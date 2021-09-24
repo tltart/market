@@ -1,44 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import BasketItem from './basketItem';
-import { useEffect } from 'react';
-import { AddGoodBasket, RemoveGoodBasket } from '../../store/goodsReducer'
-import { useState } from 'react';
-
-
-let mapStateToProps = (state) => {
-    return {
-        offers: state.goods.offers
-    }
-}
 
 
 
-const BasketItemContainer = ({ offers, AddGoodBasket, RemoveGoodBasket }) => {
-
-    const storeGet = () => {
-        if (!offers.length) {
-            if (localStorage.getItem('offer')) {
-                JSON.parse(localStorage.getItem('offer')).map(item => AddGoodBasket(item)); 
-            }
-        }
-    }
-
-    useEffect(() => {
-        storeGet();
-    }, [localStorage]);
-
-
-    const removeItem = (id) => {
-        for (let i = 0; i < localStorage.length; i++) {
-            let key = localStorage.key(i);
-            if (JSON.parse(localStorage.getItem(key)).id == id) {
-                RemoveGoodBasket(id);
-                localStorage.removeItem(key);
-                window.location.href = '';
-            }
-        }
-    }
+const BasketItemContainer = ({ offers, removeItem }) => {
 
     return (
         <div>
@@ -48,4 +13,4 @@ const BasketItemContainer = ({ offers, AddGoodBasket, RemoveGoodBasket }) => {
 
 }
 
-export default connect(mapStateToProps, { AddGoodBasket, RemoveGoodBasket })(BasketItemContainer)
+export default BasketItemContainer;

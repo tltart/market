@@ -1,5 +1,6 @@
 const ACTIVE = "ACTIVE"
 const ADD_GOOD_BASKET = "ADD_GOOD_BASKET"
+const ADD_OFFER_FROM_STORAGE = "ADD_OFFER_FROM_STORAGE"
 const REMOVE_GOOD_BASKET = "REMOVE_GOOD_BASKET"
 const GOOD_COUNT = "GOOD_COUNT"
 
@@ -26,44 +27,34 @@ let initialState = {
 
 const goodsReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case ACTIVE:
             return { ...state, activeGood: action.payload }
+
         case ADD_GOOD_BASKET:
             if (localStorage.getItem('offer')) {
                 let ol = JSON.parse(localStorage.getItem('offer'));
-                
-                console.log(ol);
                 ol.push(action.payload);
-                window.localStorage.setItem('offer', JSON.stringify(ol))
+                localStorage.setItem('offer', JSON.stringify(ol))
                 return { ...state, offers: [...state.offers, action.payload] }
             }
-            window.localStorage.setItem('offer', JSON.stringify([action.payload]))
+            localStorage.setItem('offer', JSON.stringify([action.payload]))
             return { ...state, offers: [...state.offers, action.payload] }
+
+        case ADD_OFFER_FROM_STORAGE:
+            return { ...state, offers: [...state.offers, action.payload] }
+
         case REMOVE_GOOD_BASKET:
             return { ...state, offers: [...state.offers.filter(offer => offer.id !== action.payload)] }
+
         case GOOD_COUNT:
             let { id, count } = action.payload;
-            let ol = JSON.parse(localStorage.offer);
-            for (let i = 0; i < ol.length; i++) {
-                if (ol[i].id == id){
-                    ol[i].id = count;
-                }
-
-            }
-            localStorage.setItem('offer', ol);
-            
-            // let nn = ol.map(item => id == item.id ? item.count = count : item);
-            // console.log(nn);
-            // console.log(ol);
-            // localStorage.setItem('offer', JSON.parse(localStorage.offer).map(item => id == item.id ? item.count = count : item))
-            // for (let i = 0; i < localStorage.length; i++) {
-            //     let key = localStorage.key(i);
-            //     if (key == id) {
-            //         let gg = JSON.parse(localStorage.getItem(id));
-            //         gg.count = count;
-            //         localStorage.setItem(id, JSON.stringify(gg));
-            //     }
-            // }
+            console.log(id);
+            let ol = JSON.parse(localStorage.getItem('offer'));
+            console.log(ol);
+            let ne = ol.map(item => item.id == id ? item.count = count : item)
+            // localStorage.setItem('offer', ne);
+            console.log(ne);
             let stateCopy = { ...state };
             stateCopy.offers = [...state.offers];
             stateCopy.totalPrice = 0;
@@ -87,6 +78,7 @@ const goodsReducer = (state = initialState, action) => {
 export const GoodActive = (item) => ({ type: ACTIVE, payload: item })
 export const AddGoodBasket = (good) => ({ type: ADD_GOOD_BASKET, payload: good })
 export const RemoveGoodBasket = (id) => ({ type: REMOVE_GOOD_BASKET, payload: id })
+export const AddOfferFromStorage = (good) => ({ type: ADD_OFFER_FROM_STORAGE, payload: good })
 export const GoodCount = (offer) => ({ type: GOOD_COUNT, payload: offer })
 
 

@@ -18,7 +18,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-const GoodsPage = ({ goods, names, activeGood, GoodActive, SelectNameGood }) => {
+const GoodsPage = ({ goods, names, activeGood, GoodActive }) => {
 
     const history = useHistory();
 
