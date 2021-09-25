@@ -4,7 +4,7 @@ import Footer from 'components/common/Footer/footer';
 import c from './basket.module.css';
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { RemoveGoodBasket, AddGoodBasket } from '../store/goodsReducer'
+import { RemoveGoodBasket, AddGoodBasket, RemoveOfferFromStorage } from '../store/goodsReducer'
 import { Ordering } from '../store/orderReducer'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const BasketPage = ({ offers, totalPrice, Ordering, orders, RemoveGoodBasket, AddGoodBasket }) => {
+const BasketPage = ({ offers, totalPrice, Ordering, orders, RemoveGoodBasket, AddGoodBasket, RemoveOfferFromStorage }) => {
 
     let [active, setActive] = useState(false)
 
@@ -26,8 +26,9 @@ const BasketPage = ({ offers, totalPrice, Ordering, orders, RemoveGoodBasket, Ad
     const buyOffers = (e) => {
         e.preventDefault();
         setActive(true);
+        RemoveOfferFromStorage();
         Ordering(offers);
-        setTimeout(()=>{history.push('/')},1000);
+        setTimeout(()=>{history.push('/track')},1000);
     }
 
     const storeGet = () => {
@@ -72,4 +73,4 @@ return (
 )
 }
 
-export default connect(mapStateToProps, { Ordering, RemoveGoodBasket, AddGoodBasket })(BasketPage);
+export default connect(mapStateToProps, { Ordering, RemoveGoodBasket, AddGoodBasket, RemoveOfferFromStorage })(BasketPage);

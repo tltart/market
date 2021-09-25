@@ -1,7 +1,5 @@
-import {RemoveGoodBasket} from './goodsReducer'
-
 const ORDER = "Order"
-
+const GET_ORDER = "GET_ORDER"
 
 let initialState = {
 
@@ -12,18 +10,21 @@ let initialState = {
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
         case ORDER:
-            action.payload.array.forEach(item => {
-                RemoveGoodBasket(item)
-            });
             localStorage.removeItem('offer');
-            if (localStorage.getItem('order')){
+            if (localStorage.getItem('order')) {
                 let ol = JSON.parse(localStorage.getItem('order'));
-                ol.push([...action.payload])
+                ol = [...ol, ...action.payload];
                 localStorage.setItem('order', JSON.stringify(ol))
                 return { ...state, orders: [...state.orders, ...action.payload] }
-            } 
+            }
             localStorage.setItem('order', JSON.stringify(action.payload));
             return { ...state, orders: [...state.orders, ...action.payload] }
+        case GET_ORDER:
+            if (localStorage.getItem('order')) {
+                let ol = JSON.parse(localStorage.getItem('order'));
+                console.log(ol);
+                return { ...state, orders: [...ol] }
+            }
         default:
             return state;
     }
@@ -31,6 +32,7 @@ const orderReducer = (state = initialState, action) => {
 }
 
 export const Ordering = (order) => ({ type: ORDER, payload: order })
+export const GetOrder = () => ({ type: GET_ORDER})
 
 
 export default orderReducer;

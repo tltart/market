@@ -1,6 +1,7 @@
 const ACTIVE = "ACTIVE"
 const ADD_GOOD_BASKET = "ADD_GOOD_BASKET"
 const ADD_OFFER_FROM_STORAGE = "ADD_OFFER_FROM_STORAGE"
+const REMOVE_OFFER_FROM_STORAGE = "REMOVE_OFFER_FROM_STORAGE"
 const REMOVE_GOOD_BASKET = "REMOVE_GOOD_BASKET"
 const GOOD_COUNT = "GOOD_COUNT"
 
@@ -44,6 +45,9 @@ const goodsReducer = (state = initialState, action) => {
         case ADD_OFFER_FROM_STORAGE:
             return { ...state, offers: [...state.offers, action.payload] }
 
+        case REMOVE_OFFER_FROM_STORAGE:
+            return {...state, offers: []}
+
         case REMOVE_GOOD_BASKET:
             let zz = JSON.parse(localStorage.getItem('offer')).filter(item => item.id != action.payload);
             localStorage.setItem('offer', JSON.stringify(zz));
@@ -76,6 +80,7 @@ export const GoodActive = (item) => ({ type: ACTIVE, payload: item })
 export const AddGoodBasket = (good) => ({ type: ADD_GOOD_BASKET, payload: good })
 export const RemoveGoodBasket = (id) => ({ type: REMOVE_GOOD_BASKET, payload: id })
 export const AddOfferFromStorage = (good) => ({ type: ADD_OFFER_FROM_STORAGE, payload: good })
+export const RemoveOfferFromStorage = () => ({ type: REMOVE_OFFER_FROM_STORAGE})
 export const GoodCount = (offer) => ({ type: GOOD_COUNT, payload: offer })
 
 
