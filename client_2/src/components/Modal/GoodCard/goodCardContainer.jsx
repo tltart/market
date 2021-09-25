@@ -1,6 +1,7 @@
 import React from 'react';
 import GoodCard from './goodCard';
 import { AddGoodBasket } from '../../../store/goodsReducer';
+import {getOffers} from '../../../store/selectors/goodSelector'
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import moment from 'moment';
@@ -8,7 +9,7 @@ import moment from 'moment';
 
 let mapStateToProps = (state) => {
     return {
-        offers: state.goods.offers,
+        offers: getOffers(state),
     }
 }
 

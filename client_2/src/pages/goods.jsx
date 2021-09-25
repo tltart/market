@@ -5,16 +5,18 @@ import c from './goods.module.css';
 import { useState, useEffect } from 'react';
 import SelectMenu from '../components/SelectMenu/selectMenu';
 import { GoodActive } from '../store/goodsReducer';
+import {getGoods, getActiveGood, getNames} from '../store/selectors/goodSelector';
 import GoodCardContainer from '../components/Modal/GoodCard/goodCardContainer';
 import Footer from '../components/common/Footer/footer';
 import { useHistory } from 'react-router-dom';
 
 
+
 let mapStateToProps = (state) => {
     return {
-        goods: state.goods.goods,
-        activeGood: state.goods.activeGood,
-        names: state.goods.names,
+        goods: getGoods(state),
+        activeGood: getActiveGood(state),
+        names: getNames(state),
     }
 };
 

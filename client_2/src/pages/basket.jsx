@@ -4,16 +4,17 @@ import Footer from 'components/common/Footer/footer';
 import c from './basket.module.css';
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { RemoveGoodBasket, AddGoodBasket, RemoveOfferFromStorage } from '../store/goodsReducer'
+import { RemoveGoodBasket, AddGoodBasket, RemoveOfferFromStorage } from '../store/goodsReducer';
+import {getOffers, getTotalPrice, getOrders} from '../store/selectors/goodSelector';
 import { Ordering } from '../store/orderReducer'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {
-        offers: state.goods.offers,
-        totalPrice: state.goods.totalPrice,
-        orders: state.orders.orders
+        offers: getOffers(state),
+        totalPrice: getTotalPrice(state),
+        orders: getOrders(state)
     }
 }
 
