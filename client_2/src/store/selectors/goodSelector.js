@@ -11,9 +11,7 @@ export const getNames = (state) => {
 export const getOffers = (state) => {
     return state.goods.offers
 }
-export const getOrders = (state) => {
-    return state.orders.orders
-}
+
 export const getTotalPrice = (state) => {
     return state.goods.totalPrice
 }

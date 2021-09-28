@@ -1,7 +1,7 @@
 import CounterContainer from '../Counter/counterContainer';
 import React from 'react';
 import c from './basketItem.module.css'
-import { useEffect } from 'react';
+import moment from 'moment';
 
 
 
@@ -30,7 +30,7 @@ const BasketItem = ({ offer, removeItem, price_total }) => {
                             <span><h2>Цена: {price_total} ₽</h2></span>
                         </div>
                     </div>
-                    <div className={c.date}><span><h4>Забрать: {offer.date}</h4></span></div>
+                    <div className={c.date}><span><h4>Забрать: {moment(offer.date).format("DD-MM-YYYY")}</h4></span></div>
                 </div>
             </div>
         </div>

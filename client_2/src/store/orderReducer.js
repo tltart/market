@@ -1,5 +1,9 @@
+import moment from "moment";
+
 const ORDER = "Order"
 const GET_ORDER = "GET_ORDER"
+const GET_TIME = "GET_TIME"
+
 
 let initialState = {
 
@@ -22,9 +26,22 @@ const orderReducer = (state = initialState, action) => {
         case GET_ORDER:
             if (localStorage.getItem('order')) {
                 let ol = JSON.parse(localStorage.getItem('order'));
-                console.log(ol);
                 return { ...state, orders: [...ol] }
             }
+        case GET_TIME:
+            if (state.orders.length) {
+                var now = moment();
+                var end = moment(state.orders[1].date);
+                let bb = end.diff(now, 'days');
+                
+                let stateCopy = {...state};
+                stateCopy.orders = [...state.orders];
+                
+                stateCopy.orders.map(item => item.dayToEnd = moment(item.date).diff(now, 'days'))
+
+                return stateCopy
+            }
+            return state
         default:
             return state;
     }
@@ -32,7 +49,8 @@ const orderReducer = (state = initialState, action) => {
 }
 
 export const Ordering = (order) => ({ type: ORDER, payload: order })
-export const GetOrder = () => ({ type: GET_ORDER})
+export const GetOrder = () => ({ type: GET_ORDER })
+export const GetTimeToEnd = () => ({ type: GET_TIME })
 
 
 export default orderReducer;
