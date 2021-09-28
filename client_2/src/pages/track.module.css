@@ -1,0 +1,9 @@
+#wrap__card{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+#wrap__card h2:first-child{
+    align-self: center;
+}
