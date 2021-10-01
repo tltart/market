@@ -51,8 +51,8 @@ product.belongsTo(basketProduct);
 basketProduct.hasOne(taste);
 product.belongsTo(basketProduct);
 
-product.belongsToMany(taste, {through: product_taste});
-taste.belongsToMany(product, {through: product_taste});
+product.belongsToMany(taste, { through: product_taste });
+taste.belongsToMany(product, { through: product_taste });
 
 module.exports = {
     user,

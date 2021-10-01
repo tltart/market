@@ -9,7 +9,6 @@ const TrackCard = ({ order }) => {
     let [day, setDay] = useState('...')
 
     const dayCheck = (or) => {
-        console.log(or);
         if (or < 10) {
             if (or < 5) {
                 if (or == 1) {
@@ -31,7 +30,7 @@ const TrackCard = ({ order }) => {
 
     }
 
-    useEffect(() => { dayCheck(order.dayToEnd) }, [])
+    useEffect(() => { dayCheck(order.dayToEnd) }, [order.dayToEnd])
     
     return (
         <div>

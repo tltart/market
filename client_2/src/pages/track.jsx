@@ -28,7 +28,7 @@ const TrackPage = ({ orders, GetOrder, GetTimeToEnd }) => {
     useEffect(() => {
         storeGet();
         GetTimeToEnd();
-    }, [orders]);
+    }, []);
 
     return (
         <div id={c.wrap__card}>
