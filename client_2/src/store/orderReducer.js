@@ -28,16 +28,12 @@ const orderReducer = (state = initialState, action) => {
                 let ol = JSON.parse(localStorage.getItem('order'));
                 return { ...state, orders: [...ol] }
             }
+            return state
         case GET_TIME:
-            if (state.orders.length) {
-                var now = moment();
-                var end = moment(state.orders[1].date);
-                let bb = end.diff(now, 'days');
-                
+            if (state.orders.length) {     
                 let stateCopy = {...state};
                 stateCopy.orders = [...state.orders];
-                
-                stateCopy.orders.map(item => item.dayToEnd = moment(item.date).diff(now, 'days'))
+                stateCopy.orders.map(item => item.dayToEnd = moment(item.date).diff(moment(), 'days'))
 
                 return stateCopy
             }
