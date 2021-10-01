@@ -5,3 +5,7 @@ hr{
 #card__track{
     padding: 10px 15px;
 }
+
+p, span {
+    display: inline;
+}

@@ -19,9 +19,6 @@ const TrackPage = ({ orders, GetOrder, GetTimeToEnd }) => {
 
     // Нуен запрос на сервер. НЕ ЗАБУДЬ!!!! /////////////////////////////////////////////
 
-    // console.log(orders[0].date);
-
-
     const storeGet = () => {
         if (!orders.length) {
             GetOrder();
