@@ -8,16 +8,17 @@ import Cal from '../common/Cal/cal'
 
 
 let RegisterForm = props => {
-  const { handleSubmit, title, isLogin } = props
+  const { handleSubmit, title, isLogin, errorMessage } = props
   return (
     <div className={c.forma__wrapper}>
       <form onSubmit={handleSubmit}>
         <h1>{title}</h1>
+        {errorMessage && errorMessage}
         <Field name='email' type='email' component={InputForm} placeholder="Введите почту" validate={[required]} />
         <Field name='password' type='password' component={InputForm} placeholder="Введите пароль" validate={[required]} />
         {/* <Field name='date' type='text' component={Cal} placeholder="Дату" validate={[required]} /> */}
         {!isLogin && <Field name='password' type='password' component={InputForm} placeholder="Повторите пароль" validate={[required]} />}
-        <button id={c.button}>Регистрация</button>
+        <button id={c.button}>{!isLogin ? 'Регистрация' : 'Войти'}</button>
       </form>
     </div>
   )
