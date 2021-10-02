@@ -19,9 +19,9 @@ const UserReducer = (state = initialState, action) => {
 
 export const UserAuth = (status) => ({ type: AUTH, payload: status });
 
-export const UserThunk = () => {
+export const UserThunk = (status) => {
     return (dispatch) => {
-        dispatch(UserAuth(true))
+        dispatch(UserAuth(status))
     }
 }
 

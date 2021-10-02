@@ -28,24 +28,28 @@ const LoginPage = ({isAuth, UserThunk}) => {
         if (!isLogin) {
             try {
                 let bb = await registration(data);
-                UserThunk();
-                console.log(isAuth);
+                UserThunk(true);
                 return bb
             }
             catch (e) {
                 if (e.response && e.response.data) {
                     setMess(e.response.data.message)
                 }
+                UserThunk(false)
+
             }
-            return
+            return 
         }
         try {
-            return await login(data);
+            let zz = await login(data);
+            UserThunk(true);
+            return zz
         }
         catch (e) {
             if (e.response && e.response.data) {
                 setMess(e.response.data.message)
             }
+            UserThunk(false)
         }
     }
 

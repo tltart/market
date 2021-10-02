@@ -12,7 +12,7 @@ module.exports = function (req, res, next){
         }
         const decodeJWT = jwt.decode(token, process.env.JWT_SECRET);
         req.user = decodeJWT;
-        next();
+        return next();
     } catch (e) {
         res.status(403).json({message:"Вы не авторизваны"})
     }
