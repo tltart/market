@@ -34,10 +34,6 @@ const taste = sequelize.define('taste', {
 
 })
 
-const product_taste = sequelize.define('product_taste', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-})
-
 
 user.hasOne(basket);
 basket.belongsTo(user);
@@ -45,14 +41,13 @@ basket.belongsTo(user);
 basket.hasMany(basketProduct);
 basketProduct.belongsTo(basket);
 
-basketProduct.hasOne(product);
-product.belongsTo(basketProduct);
+product.hasMany(basketProduct);
+basketProduct.belongsTo(product);
 
-basketProduct.hasOne(taste);
-product.belongsTo(basketProduct);
+taste.hasMany(basketProduct);
+basketProduct.belongsTo(taste);
 
-product.belongsToMany(taste, { through: product_taste });
-taste.belongsToMany(product, { through: product_taste });
+
 
 module.exports = {
     user,
@@ -60,5 +55,4 @@ module.exports = {
     basketProduct,
     product,
     taste,
-    product_taste
 }
