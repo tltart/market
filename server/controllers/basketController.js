@@ -1,5 +1,7 @@
+const { model } = require('../db');
 const ApiError = require('../errors/apiError');
-const { basketProduct } = require('../models/models');
+const { basketProduct, product, basket } = require('../models/models');
+
 
 
 class BasketController {
@@ -20,6 +22,24 @@ class BasketController {
             return next(ApiError.BadRequest("Неправильный запрос к базе данных"));
         }
 
+    }
+
+    async getGood(req, res, next) {
+        const { basketId } = req.query;
+
+        let product_;
+
+        if (!basketId) {
+            product_ = await basketProduct.findAll()
+        }
+        else {
+            product_ = await basketProduct.findAll({
+                where: { basketId },
+                include: [{ model: product, as: 'product' },
+                { model: basket, as: 'basket' }]
+            })
+        }
+        return res.json(product_);
 
     }
 }
