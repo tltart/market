@@ -46,6 +46,7 @@ const goodsReducer = (state = initialState, action) => {
             return { ...state, offers: [...state.offers, action.payload] }
 
         case REMOVE_OFFER_FROM_STATE:
+            console.log("Remove from State");
             return {...state, offers: []}
 
         case REMOVE_GOOD_BASKET:

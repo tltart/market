@@ -16,8 +16,8 @@ let initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case ORDER:
-            localStorage.removeItem('offer');
             if (localStorage.getItem('order')) {
                 let ol = JSON.parse(localStorage.getItem('order'));
                 ol = [...ol, ...action.payload];
@@ -26,12 +26,14 @@ const orderReducer = (state = initialState, action) => {
             }
             localStorage.setItem('order', JSON.stringify(action.payload));
             return { ...state, orders: [...state.orders, ...action.payload] }
+
         case GET_ORDER:
             if (localStorage.getItem('order')) {
                 let ol = JSON.parse(localStorage.getItem('order'));
                 return { ...state, orders: [...ol] }
             }
             return state
+
         case GET_TIME:
             if (state.orders.length) {
                 let stateCopy = { ...state };
@@ -41,6 +43,7 @@ const orderReducer = (state = initialState, action) => {
                 return stateCopy
             }
             return state
+            
         default:
             return state;
     }
@@ -55,19 +58,18 @@ export const GetTimeToEnd = () => ({ type: GET_TIME })
 export const OrderSendThunk = (order) => {
     return (dispatch) => {
 
-
         AddGoodToBasket(order).then((bb) => {
-            if (bb.status != 200){
+            if (bb.status != 200) {
                 console.log(bb);
-                return 
+                return
             }
-        })
-            // .then((bb) => {
-            // console.log(bb.status);
-            // dispatch(Ordering(order));
-            // RemoveOfferFromState();
-        // }).catch(err => console.log(err))
+            console.log(bb.status);
 
+            console.log("reducer");
+            RemoveOfferFromState();
+            localStorage.removeItem('offer');
+            dispatch(Ordering(order));
+        })
     }
 }
 
