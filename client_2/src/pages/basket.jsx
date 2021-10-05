@@ -29,23 +29,29 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
     const buyOffers = (e) => {
         e.preventDefault();
 
-        OrderSendThunk(offers);
 
-        if (offers.length) {
-            console.log("page");
-            setActiveError(true);
-            setMessErr("Ошибка ебаная");
-            setTimeout(() => {
-                setActiveError(false);
-                setMessErr(null);
-            }, 1000)
-        }
-        
-        else {
-            console.log("Ну все ровненько");
-            setActive(true);
-            setTimeout(() => { history.push('/track') }, 1000);
-        }
+            OrderSendThunk(offers)
+            .then(() => {
+            console.log("lskvmslvmslvm");
+            if (offers.length) {
+                console.log("page");
+                console.log(offers.length);
+                setActiveError(true);
+                setMessErr("Ошибка ебаная");
+                setTimeout(() => {
+                    setActiveError(false);
+                    setMessErr(null);
+                }, 1000)
+            }
+
+            else {
+                console.log("Ну все ровненько");
+                setActive(true);
+                setTimeout(() => { history.push('/track') }, 1000);
+            }
+        })
+
+
 
     }
 
