@@ -1,4 +1,5 @@
 import moment from "moment";
+import {AddGoodToBasket} from '../http/goodApi'
 
 const ORDER = "Order"
 const GET_ORDER = "GET_ORDER"
@@ -30,8 +31,8 @@ const orderReducer = (state = initialState, action) => {
             }
             return state
         case GET_TIME:
-            if (state.orders.length) {     
-                let stateCopy = {...state};
+            if (state.orders.length) {
+                let stateCopy = { ...state };
                 stateCopy.orders = [...state.orders];
                 stateCopy.orders.map(item => item.dayToEnd = moment(item.date).diff(moment(), 'days'))
 
@@ -47,6 +48,14 @@ const orderReducer = (state = initialState, action) => {
 export const Ordering = (order) => ({ type: ORDER, payload: order })
 export const GetOrder = () => ({ type: GET_ORDER })
 export const GetTimeToEnd = () => ({ type: GET_TIME })
+
+export const OrderSendThunk = (order) => {
+    return (dispatch) => {
+        AddGoodToBasket(order);
+        dispatch(Ordering(order)),
+
+    }
+}
 
 
 export default orderReducer;
