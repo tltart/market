@@ -34,7 +34,7 @@ const TrackPage = ({ orders, GetOrder, GetTimeToEnd }) => {
         <div id={c.wrap__card}>
             <h2>Отслеживание заказов</h2>
             {orders.length ?
-                orders.map(item => <TrackCard key={item.id} order={item} />)
+                orders.map(item => <TrackCard key={item.key} order={item} />)
                 :
                 <h2>
                     У вас нет заказов

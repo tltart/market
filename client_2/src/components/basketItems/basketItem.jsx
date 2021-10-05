@@ -5,8 +5,7 @@ import moment from 'moment';
 
 
 
-const BasketItem = ({ offer, removeItem, price_total }) => {
-
+const BasketItem = ({ offer, removeItem, price_total}) => {
     return (
         <div className={c.contain__item}>
             <h1>{offer.name}</h1>

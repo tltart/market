@@ -8,19 +8,19 @@ class BasketController {
 
     async addGood(req, res, next) {
         const { count, date, basketId, productId, tasteId } = req.body;
-        console.log(count, date, basketId, productId, tasteId);
+        const us = req.user;
+        res.json(us);
 
         if (!count || !date || !basketId || !productId || !tasteId) {
             return next(ApiError.BadRequest("Не допустимы пустые поля..."))
         }
-        try {
-            const prod = await basketProduct.create({ count, date, basketId, productId, tasteId });
-            return res.json(prod);
-        }
-
-        catch (e) {
-            return next(ApiError.BadRequest("Неправильный запрос к базе данных"));
-        }
+        // try {
+        //     const prod = await basketProduct.create({ count, date, basketId, productId, tasteId });
+        //     return res.json(prod);
+        // }
+        // catch (e) {
+        //     return next(ApiError.BadRequest("Неправильный запрос к базе данных"));
+        // }
 
     }
 
@@ -40,7 +40,12 @@ class BasketController {
             })
         }
         return res.json(product_);
+    }
 
+    test(req, res, next) {
+        const requ = req.body;
+        console.log(req.user);
+        return res.json(requ)
     }
 }
 

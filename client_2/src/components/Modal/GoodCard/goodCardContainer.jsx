@@ -5,6 +5,7 @@ import {getOffers} from '../../../store/selectors/goodSelector'
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import moment from 'moment';
+import {v4 as uuid} from 'uuid';
 
 
 let mapStateToProps = (state) => {
@@ -29,8 +30,9 @@ const GoodCardContainer = ({ good, click, AddGoodBasket, offers }) => {
         if (calendarDate && taste != 'default') {
             setCalendarDate(calendarDate);
             AddGoodBasket({
-                id: `${good.id}${taste}`, name: good.name, date: moment(calendarDate).format(),
-                taste: taste, price: good.price, img: good.img, count: 1, totalPiceProduct: good.price
+                id: good.id, name: good.name, date: moment(calendarDate).format(),
+                taste: taste, price: good.price, img: good.img, count: 1, totalPiceProduct: good.price,
+                key: String(uuid())
             });
             click(e);
             setWarningDiv('');
