@@ -30,36 +30,21 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
         e.preventDefault();
 
 
-        OrderSendThunk(offers).then(() =>{
-            console.log('====================================');
-            console.log("lsmvlkfvmlfskvm,");
-            console.log('====================================');
-        }).catch(()=>{
-            console.log('====================================');
-            console.log("govnino");
-            console.log('====================================');
+        OrderSendThunk(offers).then((e) => {
+            if (e.status == 200) {
+                console.log("Ну все ровненько");
+                setActive(true);
+                setTimeout(() => { history.push('/track') }, 1000);
+            }
+            else {
+                setActiveError(true);
+                setMessErr("Ошибка ебаная");
+                setTimeout(() => {
+                    setActiveError(false);
+                    setMessErr(null);
+                }, 1000)
+            }
         })
-        //     .then(() => {
-        //     console.log("lskvmslvmslvm");
-        //     if (offers.length) {
-        //         console.log("page");
-        //         console.log(offers.length);
-        //         setActiveError(true);
-        //         setMessErr("Ошибка ебаная");
-        //         setTimeout(() => {
-        //             setActiveError(false);
-        //             setMessErr(null);
-        //         }, 1000)
-        //     }
-
-        //     else {
-        //         console.log("Ну все ровненько");
-        //         setActive(true);
-        //         setTimeout(() => { history.push('/track') }, 1000);
-        //     }
-        // })
-
-
 
     }
 

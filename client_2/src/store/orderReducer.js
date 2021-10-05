@@ -43,7 +43,7 @@ const orderReducer = (state = initialState, action) => {
                 return stateCopy
             }
             return state
-            
+
         default:
             return state;
     }
@@ -58,35 +58,20 @@ export const GetTimeToEnd = () => ({ type: GET_TIME })
 export const OrderSendThunk = (order) => {
     return (dispatch) => {
 
-        // AddGoodToBasket(order);
-        
+        // AddGoodToBasket(order).then((e) => console.log(e));
+
         return new Promise((resolve, reject) => {
             AddGoodToBasket(order).
-            then((response) => resolve(response))
-            .catch(err =>{
-                console.log(err);
-            });
-        }).then(()=>{
-            console.log("reducer");
-            RemoveOfferFromState();
-            localStorage.removeItem('offer');
-            dispatch(Ordering(order));
+                then((response) => {
+                    dispatch(RemoveOfferFromState());
+                    localStorage.removeItem('offer');
+                    dispatch(Ordering(order));
+                    resolve(response)
+                })
+                .catch(err => {
+                    alert("Ошибка соединения. Проверьте подключение.");
+                });
         })
-
-
-
-        // .then((bb) => {
-        //     if (bb.status != 200) {
-        //         console.log(bb);
-        //         return
-        //     }
-        //     console.log(bb.status);
-
-        //     console.log("reducer");
-        //     RemoveOfferFromState();
-        //     localStorage.removeItem('offer');
-        //     dispatch(Ordering(order));
-        // })
     }
 }
 
