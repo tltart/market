@@ -4,7 +4,7 @@ import Footer from 'components/common/Footer/footer';
 import c from './basket.module.css';
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { RemoveGoodBasket, AddGoodBasket, RemoveOfferFromState } from '../store/goodsReducer';
+import { RemoveGoodBasket, AddGoodBasket } from '../store/goodsReducer';
 import { getOffers, getTotalPrice } from '../store/selectors/goodSelector';
 import { OrderSendThunk } from '../store/orderReducer'
 import { useEffect } from 'react';
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddGoodBasket, RemoveOfferFromState }) => {
+const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddGoodBasket }) => {
 
     let [active, setActive] = useState(false);
 
@@ -29,68 +29,68 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
     const buyOffers = (e) => {
         e.preventDefault();
 
-        OrderSendThunk(offers).then((e)=>{
-            console.log(e);
-        })
+        OrderSendThunk(offers);
 
-        //         setActive(true);
-        //         RemoveOfferFromState();
-        //         setTimeout(() => { history.push('/track') }, 1000);
-        //     }).catch(err => {
-        //         setActiveError(true);
-        //         setMessErr(err);
-        //         setTimeout(() => { 
-        //             setActiveError(false); 
-        //             setMessErr(null);
-        //         }, 1000)   
-        //     })
+        if (offers.length) {
+            setActiveError(true);
+            setMessErr("Ошибка ебаная");
+            setTimeout(() => {
+                setActiveError(false);
+                setMessErr(null);
+            }, 1000)
+
         }
-
-        const storeGet = () => {
-            if (!offers.length) {
-                if (localStorage.getItem('offer')) {
-                    let of = JSON.parse(localStorage.getItem('offer'));
-                    of.map(item => AddGoodBasket(item));
-                }
-            }
+        else {
+            setActive(true);
+            setTimeout(() => { history.push('/track') }, 1000);
         }
-
-        useEffect(() => {
-            storeGet();
-        }, []);
-
-        const removeItem = (id) => {
-            RemoveGoodBasket(id);
-            window.location.href = '';
-        }
-
-
-        return (
-            <div className={c.wrapper}>
-                <h1>Корзина</h1>
-                <BasketItemContainer offers={offers} removeItem={removeItem} />
-                {offers.length ?
-                    <div>
-                        <h1 id={c.total__price}>Итого: {totalPrice} ₽</h1>
-                        <div className={c.button__wrapper}><button className={c.basket__button}
-                            onClick={buyOffers}>Оформить заказ</button></div>
-                    </div>
-                    :
-                    <h2 className={c.empty__basket}>В корзине нет заказов</h2>
-                }
-                {active &&
-                    <div className={`${c.success__offers} ${c.active}`}>
-                        <h2 className={c.success__card}>Ваш заказ отправлен</h2>
-                    </div>
-                }
-                {activeError &&
-                    <div className={`${c.err__offers} ${c.active}`}>
-                        <h2 className={c.err__card}>{messErr}</h2>
-                    </div>
-                }
-                <Footer />
-            </div>
-        )
     }
 
-    export default connect(mapStateToProps, { OrderSendThunk, RemoveGoodBasket, AddGoodBasket, RemoveOfferFromState })(BasketPage);
+    const storeGet = () => {
+        if (!offers.length) {
+            if (localStorage.getItem('offer')) {
+                let of = JSON.parse(localStorage.getItem('offer'));
+                of.map(item => AddGoodBasket(item));
+            }
+        }
+    }
+
+    useEffect(() => {
+        storeGet();
+    }, []);
+
+    const removeItem = (id) => {
+        RemoveGoodBasket(id);
+        window.location.href = '';
+    }
+
+
+    return (
+        <div className={c.wrapper}>
+            <h1>Корзина</h1>
+            <BasketItemContainer offers={offers} removeItem={removeItem} />
+            {offers.length ?
+                <div>
+                    <h1 id={c.total__price}>Итого: {totalPrice} ₽</h1>
+                    <div className={c.button__wrapper}><button className={c.basket__button}
+                        onClick={buyOffers}>Оформить заказ</button></div>
+                </div>
+                :
+                <h2 className={c.empty__basket}>В корзине нет заказов</h2>
+            }
+            {active &&
+                <div className={`${c.success__offers} ${c.active}`}>
+                    <h2 className={c.success__card}>Ваш заказ отправлен</h2>
+                </div>
+            }
+            {activeError &&
+                <div className={`${c.err__offers} ${c.active}`}>
+                    <h2 className={c.err__card}>{messErr}</h2>
+                </div>
+            }
+            <Footer />
+        </div>
+    )
+}
+
+export default connect(mapStateToProps, { OrderSendThunk, RemoveGoodBasket, AddGoodBasket })(BasketPage);

@@ -1,5 +1,7 @@
 import moment from "moment";
-import { AddGoodToBasket } from '../http/goodApi'
+import { AddGoodToBasket } from '../http/goodApi';
+import { RemoveOfferFromState } from "./goodsReducer";
+
 
 const ORDER = "Order"
 const GET_ORDER = "GET_ORDER"
@@ -49,24 +51,22 @@ export const Ordering = (order) => ({ type: ORDER, payload: order })
 export const GetOrder = () => ({ type: GET_ORDER })
 export const GetTimeToEnd = () => ({ type: GET_TIME })
 
-export const DataPromise = (d) => {
-    return d
-}
 
 export const OrderSendThunk = (order) => {
     return (dispatch) => {
 
-        new Promise((resolve, reject) => {
-            let bb = AddGoodToBasket(order)
-            if (!bb || bb.staus != 200){
-                reject("Ошибка")
+
+        AddGoodToBasket(order).then((bb) => {
+            if (bb.status != 200){
+                console.log(bb);
+                return 
             }
-            resolve(bb)
         })
-        .then((bb) => {
-            console.log(bb.status);
-            dispatch(Ordering(order));
-        }).catch(err => console.log(err))
+            // .then((bb) => {
+            // console.log(bb.status);
+            // dispatch(Ordering(order));
+            // RemoveOfferFromState();
+        // }).catch(err => console.log(err))
 
     }
 }
