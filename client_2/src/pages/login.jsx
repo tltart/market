@@ -36,7 +36,6 @@ const LoginPage = ({isAuth, UserThunk}) => {
                     setMess(e.response.data.message)
                 }
                 UserThunk(false)
-
             }
             return 
         }

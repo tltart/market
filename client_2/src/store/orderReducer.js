@@ -66,10 +66,12 @@ export const OrderSendThunk = (order) => {
                     dispatch(RemoveOfferFromState());
                     localStorage.removeItem('offer');
                     dispatch(Ordering(order));
-                    resolve(response)
+                    resolve(response);
                 })
-                .catch(err => {
-                    alert("Ошибка соединения. Проверьте подключение.");
+                .catch(e => {
+                    if(e.response && e.response.data){
+                        alert(e.response.data.message);
+                    }
                 });
         })
     }

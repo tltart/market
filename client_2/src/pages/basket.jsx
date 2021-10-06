@@ -28,8 +28,7 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
 
     const buyOffers = (e) => {
         e.preventDefault();
-
-
+        
         OrderSendThunk(offers).then((e) => {
             if (e.status == 200) {
                 console.log("Ну все ровненько");
@@ -65,7 +64,8 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
 
     const removeItem = (id) => {
         RemoveGoodBasket(id);
-        window.location.href = '';
+        window.location.reload();
+        // window.location.href = '';
     }
 
 

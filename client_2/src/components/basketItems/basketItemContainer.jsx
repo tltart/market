@@ -1,7 +1,5 @@
 import React from 'react';
 import BasketItem from './basketItem';
-import { v4 as uuid } from 'uuid'
-import { useEffect } from 'react';
 
 
 
