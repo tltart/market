@@ -6,3 +6,7 @@ export const AddGoodToBasket = async (order) => {
         headers: { 'Content-Type': 'application/json' }
       });
 }
+
+export const GetGoodToStore = async () => {
+  return await host.get('api/product');
+}

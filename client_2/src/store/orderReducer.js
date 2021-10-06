@@ -58,8 +58,6 @@ export const GetTimeToEnd = () => ({ type: GET_TIME })
 export const OrderSendThunk = (order) => {
     return (dispatch) => {
 
-        // AddGoodToBasket(order).then((e) => console.log(e));
-
         return new Promise((resolve, reject) => {
             AddGoodToBasket(order).
                 then((response) => {
@@ -70,8 +68,9 @@ export const OrderSendThunk = (order) => {
                 })
                 .catch(e => {
                     if(e.response && e.response.data){
-                        alert(e.response.data.message);
+                        return alert(e.response.data.message);
                     }
+                    reject("Нет соединения...")
                 });
         })
     }

@@ -43,6 +43,8 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
                     setMessErr(null);
                 }, 1000)
             }
+        }).catch(e => {
+            alert(e)
         })
 
     }
@@ -64,8 +66,8 @@ const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddG
 
     const removeItem = (id) => {
         RemoveGoodBasket(id);
-        window.location.reload();
-        // window.location.href = '';
+        // window.location.reload();
+        window.location.href = '';
     }
 
 

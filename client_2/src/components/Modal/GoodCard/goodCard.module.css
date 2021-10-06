@@ -57,8 +57,11 @@
     align-self: flex-end;
 }
 
-.content__wrap p {
+#inform {
     align-self: flex-end;
+    border: 2px solid firebrick;
+    height: 40px;
+    overflow-y: scroll;
     margin-left: 10px;
 }
 
