@@ -23,10 +23,9 @@ const GoodCard = ({ good, setCalendarDate, calendarDate, selectHandle, selectVal
                         <div className={c.modal} onClick={e => { e.stopPropagation() }}>
                             <img src={process.env.REACT_APP_API_URL+good.img} alt={good.name} />
                             <div className={c.content__wrap}>
-                                <h2>{good.name}</h2>
+                                <h2 id={c.title}>{good.name}</h2>
                                 <p id={c.inform}>{good.info}</p>
-                                <p>Вес: {good.weight}</p>
-                                <h2>Цена: {good.price}</h2>
+                                <h4>Цена: {good.price} ₽</h4>
                                 <div className={c.footer_wrapper}>
                                     <div className={c.option__wrapper}>
                                         <div className={warning !== 'warning__taste' ? `${c.select__wrap}` : `${c.select__wrap} ${cc.warning}`}>
