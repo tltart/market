@@ -22,6 +22,7 @@
 }
 
 .modal {
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     width: 70vw;
@@ -30,6 +31,10 @@
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     overflow: hidden;
+}
+
+#title{
+    text-align: center;
 }
 
 .modal img {
@@ -56,11 +61,15 @@
 .content__wrap h2:nth-last-child(2) {
     align-self: flex-end;
 }
+.content__wrap h4 {
+    align-self: flex-end;
+    margin-top: auto;
+}
 
 #inform {
     align-self: flex-end;
-    border: 2px solid firebrick;
-    height: 40px;
+    margin-top: 9px;
+    height: 70px;
     overflow-y: scroll;
     margin-left: 10px;
 }
@@ -97,6 +106,7 @@
 button.card__button{
     /* border: 2px solid red; */
     background-color: #34C759;
+    height: 100%;
     border-radius: 10px;
     border: none;
     color: white;
@@ -104,7 +114,7 @@ button.card__button{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 10px;
     align-self: flex-end;
 }
 
