@@ -10,3 +10,7 @@ export const AddGoodToBasket = async (order) => {
 export const GetGoodToStore = async () => {
   return await host.get('api/product');
 }
+
+export const AddGoodBase = async (data) => {
+  return await authHost.post('api/product', data);
+}

@@ -6,11 +6,18 @@ import home from '../../../assets/icons/home.svg'
 import search from '../../../assets/icons/search.svg'
 import user from '../../../assets/icons/user.svg'
 import { NavLink } from 'react-router-dom'
-import { SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE } from '../../../utils/consts'
+import { SHOP_ROUTE, LOGIN_ROUTE, BASKET_ROUTE, ADMIN_ROUTE } from '../../../utils/consts'
+import { connect } from 'react-redux';
 
 
-const Footer = () => {
+const mapStateToProps = (state) => {
+    return {
+        isAdmin: state.user.isAdmin
+    }
+}
 
+const Footer = ({ isAdmin }) => {
+    
     return (
         <div className={c.menu}>
             <NavLink to='/' >
@@ -26,10 +33,16 @@ const Footer = () => {
             <NavLink to={LOGIN_ROUTE}>
                 <img src={user} alt="user" />
             </NavLink>
+            {isAdmin &&
+                <NavLink to={ADMIN_ROUTE}>
+                    <img src={user} alt="user" />
+                </NavLink>
+            }
+
         </div>
     )
 }
 
 
-export default Footer;
+export default connect(mapStateToProps)(Footer);
 

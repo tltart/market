@@ -1,8 +1,9 @@
 
 const AUTH = "AUTH"
 
-let initialState = {
-    isAuth: false
+let initialState = {    
+    isAuth: false,
+    isAdmin: true
 }
 
 const UserReducer = (state = initialState, action) => {

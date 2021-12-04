@@ -15,6 +15,7 @@ class ProductController {
             const product_ = await product.create({ name, price, img: filename, info });
 
             return res.json(product_)
+
         }
         catch (e) {
             next(ApiError.BadRequest(e.message))

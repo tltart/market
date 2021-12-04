@@ -40,7 +40,6 @@ const TrackPage = ({ orders, GetOrder, GetTimeToEnd }) => {
                     У вас нет заказов
                 </h2>
             }
-            <Footer />
         </div>
     )
 }

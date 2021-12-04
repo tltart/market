@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import store from '../src/store/store'
 import AppRoutes from './components/AppRoutes'
 import Header from './components/Header/header'
-
+import Footer from './components/common/Footer/footer'
 
 function App() {
   
@@ -14,6 +14,7 @@ function App() {
         <div>
           <Header />
           <AppRoutes />
+          <Footer />
         </div>
       </Provider>
     </BrowserRouter>

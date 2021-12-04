@@ -76,21 +76,15 @@ const GoodsPage = ({ goods, names, activeGood, GoodActive, GetGoodThunk }) => {
     return (
         <div className={c.super__main} onClick={rootClick}>
             <div className={c.sel}>
-                <h2>Выбрать категорию</h2>
                 <SelectMenu product={product} handleChange={handleChangeProduct} options={optionSelect} />
             </div>
-            <div>
-                <h5>Есть в наличии</h5>
-            </div>
+
             <div className={c.main}>
                 {goods.filter(good => product ? product.label === good.name : true).
                     map(good => <Good key={good.id} good={good} click={click} id={good.id} />)}
             </div>
             <GoodCardContainer good={targetGood} click={click} />
 
-            <div className={c.menu__wrap}>
-                <Footer />
-            </div>
         </div>
     )
 }

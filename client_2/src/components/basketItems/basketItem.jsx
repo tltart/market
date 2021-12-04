@@ -15,7 +15,7 @@ const BasketItem = ({ offer, removeItem, price_total}) => {
             <div className={c.line__top}></div>
             <div className={c.wrapper__item}>
                 <div className={c.img__wrapper}>
-                    <img src={offer.img} alt={offer.name} />
+                    <img src={process.env.REACT_APP_API_URL + offer.img} alt={offer.name} />
                 </div>
                 <div className={c.data__wrapper}>
                     <div className={c.taste}>{offer.taste}</div>

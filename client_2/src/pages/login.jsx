@@ -73,8 +73,6 @@ const LoginPage = ({isAuth, UserThunk}) => {
                 }
 
             </div>
-
-            <Footer />
         </>
     )
 }
