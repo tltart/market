@@ -1,9 +1,14 @@
 
-const AUTH = "AUTH"
+const AUTH = "AUTH";
+const SET_USER_DATA = "SET_USER_DATA";
 
 let initialState = {    
     isAuth: false,
-    isAdmin: true
+    isAdmin: false,
+
+    name: '',
+    mail: '',
+    phone: ''
 }
 
 const UserReducer = (state = initialState, action) => {
@@ -11,18 +16,18 @@ const UserReducer = (state = initialState, action) => {
 
         case AUTH:
             console.log(action.payload);
-            return { ...state, isAuth: action.payload }
-
+            return { ...state, isAuth: action.payload.isAuth, name: action.payload.role, mail: action.payload.email }
         default:
             return state;
     }
 }
 
-export const UserAuth = (status) => ({ type: AUTH, payload: status });
+const UserAuth = (data) => ({ type: AUTH, payload: data });
 
-export const UserThunk = (status) => {
+
+export const UserThunk = (data = {isAuth:false, name:'', mail:''}) => {
     return (dispatch) => {
-        dispatch(UserAuth(status))
+        dispatch(UserAuth(data));
     }
 }
 

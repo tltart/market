@@ -2,7 +2,7 @@ import React from 'react';
 import c from './inputForm.module.css'
 
 
-const InputForm = ({ input, meta, ...props }) => {
+const InputForm = ({ input, meta, mess, ...props }) => {
     return (
         <div className={c.forma}>
             <input {...input} {...props} />

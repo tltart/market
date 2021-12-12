@@ -2,9 +2,7 @@ import React from 'react'
 import { Field, reduxForm, reset } from 'redux-form'
 import InputForm from '../common/inputForm/inputForm'
 import c from './registerForm.module.css'
-import { required } from '../common/Validate/validate'
-import Cal from '../common/Cal/cal'
-
+import { required, eq } from '../common/Validate/validate'
 
 
 let RegisterForm = props => {
@@ -15,9 +13,8 @@ let RegisterForm = props => {
         <h1>{title}</h1>
         {errorMessage && errorMessage}
         <Field name='email' type='email' component={InputForm} placeholder="Введите почту" validate={[required]} />
-        <Field name='password' type='password' component={InputForm} placeholder="Введите пароль" validate={[required]} />
-        {/* <Field name='date' type='text' component={Cal} placeholder="Дату" validate={[required]} /> */}
-        {!isLogin && <Field name='password' type='password' component={InputForm} placeholder="Повторите пароль" validate={[required]} />}
+        <Field name='password' type='password' component={InputForm} placeholder="Введите пароль" validate={[required, eq]} />
+        {!isLogin && <Field name='password_repeat' type='password' component={InputForm} placeholder="Повторите пароль" validate={[required, eq]} />}
         <button id={c.button}>{!isLogin ? 'Регистрация' : 'Войти'}</button>
       </form>
     </div>
