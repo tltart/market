@@ -20,7 +20,6 @@ const mapStateToProps = (state) => {
 const BasketPage = ({ offers, totalPrice, OrderSendThunk, RemoveGoodBasket, AddGoodBasket }) => {
 
     let [active, setActive] = useState(false);
-
     let [activeError, setActiveError] = useState(false);
     let [messErr, setMessErr] = useState();
 
