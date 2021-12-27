@@ -21,9 +21,9 @@ let initialState = {
     totalPrice: 0
 }
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 
-type ActionTypes = GoodActiveType | AddGoodBasketType | RemoveGoodBasketType | RemoveOfferFromStateType | GoodCountType | GoodInitType
+export type ActionTypes = GoodActiveType | AddGoodBasketType | RemoveGoodBasketType | RemoveOfferFromStateType | GoodCountType | GoodInitType
 
 const goodsReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
